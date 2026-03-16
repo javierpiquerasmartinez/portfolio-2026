@@ -1,0 +1,86 @@
+{
+  "personal": {
+    "name": "Javier Piqueras",
+    "title": "Software Engineer",
+    "subtitle": "Available for Freelance / Contract Roles",
+    "phone": "+34 655 601 562",
+    "email": "javierpiquerasmartinez@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/javipiquerasm/"
+  },
+  "about": "Hands-on Fullstack Engineer with 10+ years in web development, evolving from Junior Developer to technical leadership while staying deeply immersed in code — my core passion. Expert in building scalable, high-quality applications with a focus on clean architecture, comprehensive testing, zero technical debt, and proactive obsolescence management. Proven in delivering robust systems at scale, I seek roles as a senior contributor or freelance specialist where I can drive technical excellence through direct coding, architecture, and optimizations.",
+  "skills": {
+    "frontend": ["React (Hooks, Server Components)", "TypeScript (Advanced)", "JavaScript", "Tailwind CSS", "Zustand", "React Query", "Jest", "Cypress"],
+    "backend": ["Node.js (Advanced)", "NestJS", "Express", "TypeScript"],
+    "databases": ["Prisma", "PostgreSQL", "MongoDB", "Redis", "MySQL", "Oracle"],
+    "devops": ["Docker", "AWS (EC2, S3, Lambda)", "CI/CD (GitHub Actions)", "Git"],
+    "other": ["Microservices", "GraphQL", "Clean/Hexagonal Architecture", "TDD/BDD", "Performance Optimization"]
+  },
+  "experience": [
+    {
+      "title": "Head of Application Development and Management",
+      "company": "BNP Paribas Personal Finance",
+      "startDate": "August 2022",
+      "endDate": null,
+      "current": true,
+      "bullets": [
+        "Directed technical architecture for mission-critical, multi-tenant web apps in automotive finance, using React/Angular (frontend) + Node.js/NestJS/Express (backend) + PostgreSQL/MongoDB/Redis.",
+        "Implemented scalable microservices and clean architecture, reducing latency and improving system reliability.",
+        "Led code reviews and contributed production code in TypeScript/Node.js, enforcing comprehensive testing (Jest/Cypress) with >85% coverage.",
+        "Managed cloud deployments (AWS) with Docker/CI/CD, achieving zero-downtime updates and compliance with financial regulations.",
+        "Optimized legacy Java components for high-availability, integrating with modern JS stacks."
+      ],
+      "techStack": ["React", "Angular", "TypeScript", "JavaScript", "Node.js", "NestJS", "Express", "PostgreSQL", "MongoDB", "Redis", "AWS", "Docker", "CI/CD", "Jest", "Cypress", "Java"]
+    },
+    {
+      "title": "Technical Leader",
+      "company": "BNP Paribas Personal Finance",
+      "startDate": "February 2019",
+      "endDate": "August 2022",
+      "current": false,
+      "bullets": [
+        "Owned fullstack development for multi-country automotive financing platform (e-commerce + dealer portal), using React + TypeScript frontend, Java (Spring) high-availability services + PostgreSQL, and Node.js APIs + MongoDB.",
+        "Architected and implemented scalable, compliance-driven features, supporting 5 countries and +10k daily transactions.",
+        "Optimized performance and security, reducing incidents TDD and observability tools."
+      ],
+      "techStack": ["React", "TypeScript", "Java", "Spring", "PostgreSQL", "Node.js", "MongoDB", "TDD"]
+    },
+    {
+      "title": "Junior Consultant Engineer",
+      "company": "Altran Innovación",
+      "startDate": "September 2018",
+      "endDate": "February 2019",
+      "current": false,
+      "bullets": [
+        "Developed B2B/B2C financial solutions using Angular/React (TypeScript), HTML5/CSS3 frontend, Java (Spring) backend, and Oracle databases.",
+        "Implemented responsive UIs and APIs, improving user experience for multiple clients.",
+        "Collaborated on integrations, focusing on code quality and testing."
+      ],
+      "techStack": ["Angular", "React", "TypeScript", "HTML5", "CSS3", "Java", "Spring", "Oracle"]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Masters Degree - Engineering and Data Science",
+      "institution": "Universidad Nacional Española a Distancia - UNED",
+      "startYear": 2019,
+      "endYear": 2021
+    },
+    {
+      "degree": "Masters Degree in Informatics Engineering",
+      "institution": "Universidad Complutense de Madrid - UCM",
+      "startYear": 2017,
+      "endYear": 2019
+    },
+    {
+      "degree": "Informatics and Software Engineering - University Degree",
+      "institution": "Universidad Politécnica de Valencia - UPV",
+      "startYear": 2013,
+      "endYear": 2017
+    }
+  ],
+  "languages": [
+    { "language": "Spanish", "level": "Native" },
+    { "language": "English", "level": "C1 Advanced (High Level)" },
+    { "language": "French", "level": "B1 (Conversational)" }
+  ]
+}
