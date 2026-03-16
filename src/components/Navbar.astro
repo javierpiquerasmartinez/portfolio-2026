@@ -1,0 +1,321 @@
+---
+import type { Translations, Locale } from '../i18n/utils';
+
+interface Props {
+  t: Translations;
+  lang: Locale;
+}
+
+const { t, lang } = Astro.props;
+
+const altLang = lang === 'en' ? 'es' : 'en';
+const altHref = lang === 'en' ? '/es/' : '/';
+---
+
+<header class="navbar" role="banner">
+  <nav class="navbar__inner" aria-label="Main navigation">
+
+    <a href="#hero" class="navbar__brand" aria-label="Back to top">JP</a>
+
+    <ul class="navbar__links" role="list" id="nav-menu">
+      <li><a href="#about"      class="navbar__link" data-section="about">{t['nav.about']}</a></li>
+      <li><a href="#experience" class="navbar__link" data-section="experience">{t['nav.experience']}</a></li>
+      <li><a href="#stack"      class="navbar__link" data-section="stack">{t['nav.stack']}</a></li>
+      <li><a href="#contact"    class="navbar__link" data-section="contact">{t['nav.contact']}</a></li>
+    </ul>
+
+    <div class="navbar__right">
+      <a
+        href={altHref}
+        class="navbar__lang"
+        lang={altLang}
+        hreflang={altLang}
+        aria-label={`Switch to ${altLang.toUpperCase()}`}
+      >
+        {altLang.toUpperCase()}
+      </a>
+      <button
+        id="nav-toggle"
+        class="navbar__hamburger"
+        aria-controls="nav-menu"
+        aria-expanded="false"
+        aria-label={t['nav.menu.open']}
+        data-open-label={t['nav.menu.open']}
+        data-close-label={t['nav.menu.close']}
+      >
+        <span class="navbar__bar"></span>
+        <span class="navbar__bar"></span>
+        <span class="navbar__bar"></span>
+      </button>
+    </div>
+
+  </nav>
+</header>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: transparent;
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+
+  .navbar.navbar--scrolled {
+    background-color: rgba(10, 10, 10, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+  }
+
+  .navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(1.25rem, 6vw, 4rem);
+    height: 3.5rem;
+    max-width: 90rem;
+    margin: 0 auto;
+  }
+
+  .navbar__brand {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #ffffff;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .navbar__brand:hover,
+  .navbar__brand:focus-visible {
+    color: var(--color-accent);
+  }
+
+  .navbar__links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar__link {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    position: relative;
+    padding-bottom: 0.25rem;
+  }
+
+  .navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--color-accent);
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+  }
+
+  .navbar__link:hover,
+  .navbar__link:focus-visible {
+    color: #ffffff;
+  }
+
+  .navbar__link.active {
+    color: var(--color-accent);
+  }
+
+  .navbar__link.active::after {
+    transform: scaleX(1);
+  }
+
+  .navbar__right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  .navbar__lang {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0.25em 0.6em;
+    border-radius: 3px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .navbar__lang:hover,
+  .navbar__lang:focus-visible {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .navbar__hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+
+  .navbar__bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 1px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  /* Hamburger → X cuando está abierto */
+  .navbar--menu-open .navbar__bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .navbar--menu-open .navbar__bar:nth-child(2) {
+    opacity: 0;
+  }
+  .navbar--menu-open .navbar__bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    .navbar__hamburger {
+      display: flex;
+    }
+
+    .navbar__links {
+      position: fixed;
+      inset: 3.5rem 0 0 0;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      background-color: rgba(10, 10, 10, 0.97);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .navbar__links.nav-open {
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    .navbar__link {
+      font-size: 1.05rem;
+      letter-spacing: 0.15em;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .navbar,
+    .navbar__links,
+    .navbar__link,
+    .navbar__link::after,
+    .navbar__lang,
+    .navbar__bar {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    const navbar  = document.querySelector('.navbar') as HTMLElement | null;
+    const toggle  = document.getElementById('nav-toggle') as HTMLButtonElement | null;
+    const menu    = document.getElementById('nav-menu') as HTMLElement | null;
+    const links   = document.querySelectorAll<HTMLAnchorElement>('.navbar__link');
+
+    if (!navbar) return;
+
+    // --- Glassmorphism al hacer scroll ---
+    const heroEl = document.getElementById('hero');
+    if (heroEl) {
+      const scrollObserver = new IntersectionObserver(
+        ([entry]) => {
+          navbar.classList.toggle('navbar--scrolled', !entry.isIntersecting);
+        },
+        { threshold: 0, rootMargin: '-56px 0px 0px 0px' }
+      );
+      scrollObserver.observe(heroEl);
+    }
+
+    // --- Sección activa con IntersectionObserver ---
+    const sectionIds = ['hero', 'about', 'experience', 'stack', 'contact'];
+    const sections = sectionIds
+      .map(id => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (sections.length > 0) {
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const id = entry.target.id;
+            links.forEach((link) => {
+              const isActive = link.dataset.section === id;
+              link.classList.toggle('active', isActive);
+              link.setAttribute('aria-current', isActive ? 'true' : 'false');
+            });
+          });
+        },
+        { threshold: 0, rootMargin: '-40% 0px -55% 0px' }
+      );
+      sections.forEach(el => sectionObserver.observe(el));
+    }
+
+    // --- Hamburger ---
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => {
+        const isOpen = menu.classList.toggle('nav-open');
+        navbar.classList.toggle('navbar--menu-open', isOpen);
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        toggle.setAttribute(
+          'aria-label',
+          isOpen
+            ? (toggle.dataset.closeLabel ?? '')
+            : (toggle.dataset.openLabel ?? '')
+        );
+      });
+
+      links.forEach((link) => {
+        link.addEventListener('click', () => {
+          menu.classList.remove('nav-open');
+          navbar.classList.remove('navbar--menu-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', toggle.dataset.openLabel ?? '');
+        });
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menu.classList.contains('nav-open')) {
+          menu.classList.remove('nav-open');
+          navbar.classList.remove('navbar--menu-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', toggle.dataset.openLabel ?? '');
+          toggle.focus();
+        }
+      });
+    }
+  })();
+</script>

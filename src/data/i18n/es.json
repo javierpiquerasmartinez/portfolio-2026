@@ -7,5 +7,11 @@
   "hero.cta.aria": "Contacta conmigo — Javier Piqueras",
   "experience.label": "Experiencia",
   "experience.number": "02",
-  "experience.present": "Actualidad"
+  "experience.present": "Actualidad",
+  "nav.about": "Sobre mí",
+  "nav.experience": "Experiencia",
+  "nav.stack": "Stack",
+  "nav.contact": "Contacto",
+  "nav.menu.open": "Abrir menú de navegación",
+  "nav.menu.close": "Cerrar menú de navegación"
 }
