@@ -1,5 +1,5 @@
 ---
-import type { Translations } from '../i18n/utils';
+import type { Translations, Locale } from '../i18n/utils';
 
 interface ExperienceItem {
   title: string;
@@ -8,6 +8,7 @@ interface ExperienceItem {
   endDate: string | null;
   current: boolean;
   bullets: string[];
+  bullets_es?: string[];
   techStack: string[];
 }
 
@@ -16,9 +17,11 @@ interface Props {
   index: number;
   duration: string;
   t: Translations;
+  lang: Locale;
 }
 
-const { entry, index, duration, t } = Astro.props;
+const { entry, index, duration, t, lang } = Astro.props;
+const bullets = lang === 'es' && entry.bullets_es ? entry.bullets_es : entry.bullets;
 ---
 
 <article
@@ -42,7 +45,7 @@ const { entry, index, duration, t } = Astro.props;
     </p>
 
     <ul class="experience__bullets">
-      {entry.bullets.map((bullet) => (
+      {bullets.map((bullet) => (
         <li class="experience__bullet">{bullet}</li>
       ))}
     </ul>

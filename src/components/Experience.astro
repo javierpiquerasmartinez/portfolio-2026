@@ -1,14 +1,15 @@
 ---
-import type { Translations } from '../i18n/utils';
+import type { Translations, Locale } from '../i18n/utils';
 import SectionHeading from './SectionHeading.astro';
 import ExperienceEntry from './ExperienceEntry.astro';
 import cvData from '../data/cv.json';
 
 interface Props {
   t: Translations;
+  lang: Locale;
 }
 
-const { t } = Astro.props;
+const { t, lang } = Astro.props;
 
 const MONTHS: Record<string, number> = {
   January: 0, February: 1, March: 2, April: 3,
@@ -47,6 +48,7 @@ const entries = cvData.experience;
           index={index}
           duration={calcDuration(entry.startDate, entry.endDate)}
           t={t}
+          lang={lang}
         />
       ))}
     </div>

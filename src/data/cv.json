@@ -61,6 +61,13 @@
         "Managed cloud deployments (AWS) with Docker/CI/CD, achieving zero-downtime updates and compliance with financial regulations.",
         "Optimized legacy Java components for high-availability, integrating with modern JS stacks."
       ],
+      "bullets_es": [
+        "Dirigí la arquitectura técnica de aplicaciones web multiempresa y críticas para el negocio en financiación de automóviles, con React/Angular (frontend) + Node.js/NestJS/Express (backend) + PostgreSQL/MongoDB/Redis.",
+        "Implementé microservicios escalables y arquitectura limpia, reduciendo la latencia y mejorando la fiabilidad del sistema.",
+        "Lideré revisiones de código y contribuí código en producción en TypeScript/Node.js, garantizando una cobertura de tests (Jest/Cypress) superior al 85%.",
+        "Gestioné despliegues en la nube (AWS) con Docker/CI/CD, logrando actualizaciones sin downtime y cumplimiento de regulaciones financieras.",
+        "Optimicé componentes Java legacy de alta disponibilidad, integrándolos con stacks modernos en JS."
+      ],
       "techStack": ["React", "Angular", "TypeScript", "JavaScript", "Node.js", "NestJS", "Express", "PostgreSQL", "MongoDB", "Redis", "AWS", "Docker", "CI/CD", "Jest", "Cypress", "Java"]
     },
     {
@@ -74,6 +81,11 @@
         "Architected and implemented scalable, compliance-driven features, supporting 5 countries and +10k daily transactions.",
         "Optimized performance and security, reducing incidents TDD and observability tools."
       ],
+      "bullets_es": [
+        "Lideré el desarrollo fullstack de una plataforma de financiación de automóviles multinacional (e-commerce + portal de concesionarios), con React + TypeScript en frontend, servicios Java (Spring) de alta disponibilidad + PostgreSQL, y APIs en Node.js + MongoDB.",
+        "Diseñé e implementé funcionalidades escalables y conformes con la regulación, dando soporte a 5 países y más de 10.000 transacciones diarias.",
+        "Optimicé el rendimiento y la seguridad, reduciendo incidencias con TDD y herramientas de observabilidad."
+      ],
       "techStack": ["React", "TypeScript", "Java", "Spring", "PostgreSQL", "Node.js", "MongoDB", "TDD"]
     },
     {
@@ -86,6 +98,11 @@
         "Developed B2B/B2C financial solutions using Angular/React (TypeScript), HTML5/CSS3 frontend, Java (Spring) backend, and Oracle databases.",
         "Implemented responsive UIs and APIs, improving user experience for multiple clients.",
         "Collaborated on integrations, focusing on code quality and testing."
+      ],
+      "bullets_es": [
+        "Desarrollé soluciones financieras B2B/B2C con Angular/React (TypeScript), frontend HTML5/CSS3, backend Java (Spring) y bases de datos Oracle.",
+        "Implementé interfaces responsive y APIs, mejorando la experiencia de usuario para múltiples clientes.",
+        "Colaboré en integraciones poniendo el foco en la calidad del código y el testing."
       ],
       "techStack": ["Angular", "React", "TypeScript", "HTML5", "CSS3", "Java", "Spring", "Oracle"]
     }
