@@ -20,5 +20,16 @@
   "stack.category.backend": "Backend",
   "stack.category.databases": "Databases",
   "stack.category.devops": "DevOps",
-  "stack.category.other": "Other"
+  "stack.category.other": "Other",
+  "about.number": "04",
+  "about.label": "About Me",
+  "about.bio.p1": "I'm a software engineer based in Valencia who has spent over a decade building products on the web — and still finds it genuinely exciting. I started as a junior developer and grew into technical leadership, but I never left the keyboard behind. Code is where I do my best thinking.",
+  "about.bio.p2": "I care deeply about the quality of what I ship. Not just that it works, but that it's built to last — clean architecture, comprehensive testing, and a codebase the next engineer will actually want to open. I've seen what happens when those things are skipped, and I've learned to treat them as non-negotiable.",
+  "about.bio.p3": "Outside of work, I'm drawn to languages — I speak Spanish, English, and some French — and I'm always curious about how systems think, whether that's software or something else entirely.",
+  "about.facts.location.label": "Based in",
+  "about.facts.location.value": "Valencia, Spain",
+  "about.facts.languages.label": "Languages",
+  "about.facts.languages.value": "ES · EN · FR",
+  "about.facts.education.label": "Education",
+  "about.facts.education.value": "MSc Computer Science"
 }

@@ -1,0 +1,200 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import type { Translations } from '../i18n/utils';
+
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+
+const facts = [
+  { label: t['about.facts.location.label'],  value: t['about.facts.location.value'] },
+  { label: t['about.facts.languages.label'], value: t['about.facts.languages.value'] },
+  { label: t['about.facts.education.label'], value: t['about.facts.education.value'] },
+];
+---
+
+<section class="about" id="about" aria-label={t['about.label']}>
+  <div class="about__inner">
+    <SectionHeading label={t['about.label']} number={t['about.number']} />
+    <div class="about__grid">
+
+      <div class="about__content">
+        <div class="about__bio">
+          <p>{t['about.bio.p1']}</p>
+          <p>{t['about.bio.p2']}</p>
+          <p>{t['about.bio.p3']}</p>
+        </div>
+        <div class="about__facts">
+          {facts.map((fact) => (
+            <div class="about__fact">
+              <span class="about__fact-label">{fact.label}</span>
+              <span class="about__fact-value">{fact.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="about__photo-wrapper">
+        <img
+          class="about__photo"
+          src="/jp-image.png"
+          alt="Javier Piqueras"
+          width="830"
+          height="1050"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: clamp(4rem, 10vw, 8rem) clamp(1.25rem, 6vw, 8rem);
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1fr 0.66fr;
+    gap: clamp(3rem, 6vw, 6rem);
+    align-items: start;
+    margin-top: clamp(2rem, 4vw, 3rem);
+  }
+
+  /* --- Content column --- */
+  .about__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition: opacity 0.5s var(--ease-smooth), transform 0.5s var(--ease-smooth);
+  }
+
+  .about__content.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .about__bio {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .about__bio p {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0;
+  }
+
+  /* --- Quick facts --- */
+  .about__facts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .about__fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .about__fact-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    min-width: 7rem;
+    flex-shrink: 0;
+  }
+
+  .about__fact-value {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  /* --- Photo column --- */
+  .about__photo-wrapper {
+    opacity: 0;
+    transform: translateX(1.5rem);
+    transition: opacity 0.5s var(--ease-smooth), transform 0.5s var(--ease-smooth);
+    transition-delay: 0.1s;
+  }
+
+  .about__photo-wrapper.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .about__photo {
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+
+  /* --- Mobile --- */
+  @media (max-width: 768px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about__photo-wrapper {
+      order: -1;
+      transform: translateY(1.5rem);
+    }
+
+    .about__photo-wrapper.is-visible {
+      transform: translateY(0);
+    }
+
+    .about__photo {
+      max-height: 320px;
+      object-position: top center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about__content,
+    .about__photo-wrapper {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const content = document.querySelector<HTMLElement>('.about__content');
+  const photo = document.querySelector<HTMLElement>('.about__photo-wrapper');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion) {
+    content?.classList.add('is-visible');
+    photo?.classList.add('is-visible');
+  } else {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (content) observer.observe(content);
+    if (photo) observer.observe(photo);
+  }
+</script>

@@ -5,3 +5,4 @@
 
 ## Project State
 - [project_hero_state.md](project_hero_state.md) — Hero section current implementation and open design decisions
+- [project_about_design.md](project_about_design.md) — About Me section layout, photo treatment, text structure, and animation (pending confirmation)

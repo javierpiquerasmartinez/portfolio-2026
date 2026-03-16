@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Experience from '../components/Experience.astro';
 import Stack from '../components/Stack.astro';
+import AboutMe from '../components/AboutMe.astro';
 import { useTranslations } from '../i18n/utils';
 
 const t = useTranslations('en');
@@ -12,4 +13,5 @@ const t = useTranslations('en');
   <Hero t={t} />
   <Experience t={t} />
   <Stack t={t} />
+  <AboutMe t={t} />
 </Layout>
