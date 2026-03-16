@@ -160,8 +160,13 @@ const facts = [
     }
 
     .about__photo {
-      max-height: 320px;
-      object-position: top center;
+      width: auto;
+      height: auto;
+      max-width: min(100%, 360px);
+      max-height: none;
+      object-fit: unset;
+      margin: 0 auto;
+      display: block;
     }
   }
 
