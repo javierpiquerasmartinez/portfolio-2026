@@ -9,7 +9,14 @@
       <span class="letter from-top">V</span>
       <span class="letter from-bottom">I</span>
     </h1>
-    <p class="hero__title">Software Engineer</p>
+    <p class="hero__title">Senior Software Engineer · Building Products That Scale</p>
+    <div class="hero__cta-row">
+      <span class="hero__available">Available for freelance &amp; contract work</span>
+      <span class="hero__dot" aria-hidden="true">·</span>
+      <a href="#contact" class="hero__cta" aria-label="Get in touch — contact Javier Piqueras">
+        Get in touch
+      </a>
+    </div>
   </div>
 
   <div class="scroll-indicator" aria-hidden="true">
@@ -67,6 +74,44 @@
     color: rgba(255, 255, 255, 0.45);
     opacity: 0;
     animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
+  }
+
+  /* CTA row */
+  .hero__cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+    opacity: 0;
+    animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
+  }
+
+  .hero__available {
+    color: var(--color-accent);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+  }
+
+  .hero__dot {
+    color: rgba(255, 255, 255, 0.25);
+  }
+
+  .hero__cta {
+    color: var(--color-accent);
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25em;
+  }
+
+  .hero__cta:hover,
+  .hero__cta:focus-visible {
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-underline-offset: 3px;
   }
 
   /* Scroll indicator */
@@ -127,6 +172,11 @@
     }
 
     .hero__title {
+      animation: none;
+      opacity: 1;
+    }
+
+    .hero__cta-row {
       animation: none;
       opacity: 1;
     }
