@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import jpImage from '../assets/jp-image.png';
 import SectionHeading from './SectionHeading.astro';
 import type { Translations } from '../i18n/utils';
 
@@ -37,12 +39,12 @@ const facts = [
       </div>
 
       <div class="about__photo-wrapper">
-        <img
+        <Image
           class="about__photo"
-          src="/jp-image.png"
+          src={jpImage}
           alt="Javier Piqueras"
-          width="830"
-          height="1050"
+          loading="lazy"
+          decoding="async"
         />
       </div>
 
