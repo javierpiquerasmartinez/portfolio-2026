@@ -3,5 +3,8 @@
   "hero.subtitle": "Senior Software Engineer · Building Products That Scale",
   "hero.available": "Available for freelance & contract work",
   "hero.cta": "Get in touch",
-  "hero.cta.aria": "Get in touch — contact Javier Piqueras"
+  "hero.cta.aria": "Get in touch — contact Javier Piqueras",
+  "experience.label": "Experience",
+  "experience.number": "02",
+  "experience.present": "Present"
 }
