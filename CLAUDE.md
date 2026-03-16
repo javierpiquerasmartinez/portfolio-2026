@@ -31,7 +31,17 @@ El nivel de componetización debe ser óptimo. Cualquier recurso que pueda ser r
 - Además, el portfolio solamente tendrá una sola página con todas las secciones, accesibles scrolleando o haciendo click en su respectivo anchor.
 
 # Idioma
-Será multiidoma, en ingés por defecto pero el usuario podrá cambiar a Español.
+Será multiidioma, en inglés por defecto pero el usuario podrá cambiar a Español.
+
+## Implementación i18n
+- Motor: i18n nativo de Astro (`astro.config.mjs`)
+- Locale por defecto: `en` (sin prefijo en la URL → `/`)
+- Locale secundario: `es` (con prefijo → `/es/`)
+- Archivos de traducción: `src/data/i18n/en.json` y `src/data/i18n/es.json`
+- Utilidades: `src/i18n/utils.ts` — expone `getLang(url)` y `useTranslations(lang)`
+- Las páginas cargan las traducciones y las pasan a los componentes mediante la prop `t`
+- Los componentes no tienen texto hardcodeado; todo texto visible se define en los JSON
+- Al añadir una nueva sección: añadir las claves en ambos JSON y pasar `t` al componente
 
 # Estilo visual
 - Tema: <!-- dark / light / sistema -->

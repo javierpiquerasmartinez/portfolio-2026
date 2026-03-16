@@ -1,8 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations('en');
 ---
 
-<Layout title="Javier Piqueras — Software Engineer">
-  <Hero />
+<Layout title={t['site.title']}>
+  <Hero t={t} />
 </Layout>
