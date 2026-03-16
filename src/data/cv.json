@@ -17,7 +17,8 @@
       { "name": "Zustand",      "slug": "zustand",      "note": null },
       { "name": "React Query",  "slug": "reactquery",   "note": null },
       { "name": "Jest",         "slug": "jest",         "note": null },
-      { "name": "Cypress",      "slug": "cypress",      "note": null }
+      { "name": "Cypress",      "slug": "cypress",      "note": null },
+      { "name": "Astro",        "slug": "astro",        "note": null }
     ],
     "backend": [
       { "name": "Node.js",  "slug": "nodedotjs", "note": "Advanced" },
