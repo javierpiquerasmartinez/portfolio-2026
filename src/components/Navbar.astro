@@ -3,6 +3,7 @@ import type { Translations, Locale } from '../i18n/utils';
 import NavLinks from './navbar/NavLinks.astro';
 import LanguageSwitcher from './navbar/LanguageSwitcher.astro';
 import HamburgerButton from './navbar/HamburgerButton.astro';
+import Logo from './Logo.astro';
 
 interface Props {
   t: Translations;
@@ -15,7 +16,9 @@ const { t, lang } = Astro.props;
 <header class="navbar" role="banner">
   <nav class="navbar__inner" aria-label="Main navigation">
 
-    <a href="#hero" class="navbar__brand" aria-label="Back to top">JP</a>
+    <a href="#hero" class="navbar__brand" aria-label="Back to top">
+      <Logo />
+    </a>
 
     <NavLinks t={t} />
 
@@ -73,17 +76,27 @@ const { t, lang } = Astro.props;
   }
 
   .navbar__brand {
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: #ffffff;
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    letter-spacing: 0.05em;
     flex-shrink: 0;
   }
 
-  .navbar__brand:hover,
-  .navbar__brand:focus-visible {
-    color: var(--color-accent);
+  .navbar__brand svg {
+    height: 1.75rem;
+    width: auto;
+  }
+
+  .navbar__brand .logo-j,
+  .navbar__brand .logo-dot {
+    transition: fill 0.2s ease;
+  }
+
+  .navbar__brand:hover .logo-j,
+  .navbar__brand:focus-visible .logo-j,
+  .navbar__brand:hover .logo-dot,
+  .navbar__brand:focus-visible .logo-dot {
+    fill: var(--color-accent);
   }
 
   .navbar__right {

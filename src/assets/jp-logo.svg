@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 92" fill="none">
+  <!-- j letterform -->
+  <path
+    d="M 5 0 H 29 Q 33 0 33 4 V 60 A 30 30 0 0 1 3 90 L 3 4 Q 3 0 5 0 Z"
+    fill="white"
+  />
+  <!-- p circle (dot) -->
+  <circle cx="60" cy="26" r="20" fill="#E8FF47"/>
+</svg>

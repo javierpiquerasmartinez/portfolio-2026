@@ -1,0 +1,20 @@
+---
+interface Props {
+  height?: string;
+  class?: string;
+}
+
+const { height = '1.75rem', class: className } = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 82 92"
+  style={`height: ${height}; width: auto;`}
+  class={className}
+  aria-hidden="true"
+  focusable="false"
+>
+  <path class="logo-j"   d="M 5 0 H 29 Q 33 0 33 4 V 60 A 30 30 0 0 1 3 90 L 3 4 Q 3 0 5 0 Z" fill="white"/>
+  <circle class="logo-dot" cx="60" cy="26" r="20" fill="#E8FF47"/>
+</svg>

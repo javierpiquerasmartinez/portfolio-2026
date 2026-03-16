@@ -44,10 +44,12 @@ Será multiidioma, en inglés por defecto pero el usuario podrá cambiar a Espa�
 - Al añadir una nueva sección: añadir las claves en ambos JSON y pasar `t` al componente
 
 # Estilo visual
-- Tema: <!-- dark / light / sistema -->
-- Estilo de referencia: <!-- minimalista, glassmorphism, cyberpunk, etc. -->
-- Paleta de colores: <!-- colores primarios y de acento, p.ej. #0f0f0f, #00ff99 -->
-- Tipografías: <!-- fuentes preferidas, p.ej. Inter, JetBrains Mono -->
+- Tema: Dark
+- Estilo de referencia: Minimalista — inspirado en Vercel Ship (tipografía grande, dark, espaciado generoso)
+- Paleta de colores:
+  - Fondo global: `#0a0a0a` (`--color-bg`)
+  - Acento principal: `#E8FF47` Electric Lime (`--color-accent`) — usado en CTAs, highlights e interactivos; nunca como fondo de bloques grandes
+- Tipografías: **Geist** (cargada desde Google Fonts en el Layout global)
 
 # Secciones opcionales
 <!-- Indica si quieres incluir alguna de estas secciones adicionales -->
@@ -56,8 +58,11 @@ Será multiidioma, en inglés por defecto pero el usuario podrá cambiar a Espa�
 - [ ] Testimonials / Recomendaciones
 
 # Navegación
-<!-- Describe el tipo de navegación deseada -->
-- Tipo: <!-- fija en la parte superior / lateral / hamburger en móvil -->
+- Tipo: Fija en la parte superior (`position: fixed`), glassmorphism al hacer scroll (blur + fondo semitransparente)
+- Desktop: links horizontales (Experience · Stack · About · Contact) + selector de idioma a la derecha
+- Móvil (≤640px): hamburger button — el menú se despliega a pantalla completa con slide desde la derecha
+- Brand: logotipo "JP" a la izquierda, enlaza a `#hero`
+- Sección activa resaltada con color acento (`--color-accent`) + underline animado
 
 # Formulario de contacto
 <!-- Indica el servicio que usarás para gestionar el envío del formulario -->
