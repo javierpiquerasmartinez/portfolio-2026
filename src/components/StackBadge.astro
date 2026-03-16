@@ -1,0 +1,92 @@
+---
+interface Props {
+  name: string;
+  slug: string | null;
+  note?: string | null;
+}
+
+const { name, slug, note } = Astro.props;
+---
+
+<li class="stack-badge">
+  {slug && (
+    <img
+      class="stack-badge__icon"
+      src={`https://cdn.simpleicons.org/${slug}/ffffff`}
+      alt=""
+      aria-hidden="true"
+      width="16"
+      height="16"
+      loading="lazy"
+    />
+  )}
+  <span class="stack-badge__name">{name}</span>
+  {note && <span class="stack-badge__note">{note}</span>}
+</li>
+
+<style>
+  .stack-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    height: 38px;
+    padding: 0 0.75rem;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    cursor: default;
+    opacity: 0;
+    transform: translateY(0.75rem);
+    transition:
+      opacity 0.4s var(--ease-smooth),
+      transform 0.4s var(--ease-smooth),
+      border-color 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .stack-badge.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stack-badge.is-dimmed {
+    opacity: 0.25;
+  }
+
+  .stack-badge:hover {
+    border-color: var(--accent-dim);
+    background-color: rgba(232, 255, 71, 0.05);
+  }
+
+  .stack-badge__icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .stack-badge:hover .stack-badge__icon {
+    filter: brightness(0) saturate(100%) invert(96%) sepia(46%) saturate(521%) hue-rotate(9deg) brightness(105%);
+  }
+
+  .stack-badge__name {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .stack-badge__note {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  @media (max-width: 480px) {
+    .stack-badge__note {
+      display: none;
+    }
+  }
+</style>

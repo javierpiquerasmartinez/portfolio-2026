@@ -9,11 +9,42 @@
   },
   "about": "Hands-on Fullstack Engineer with 10+ years in web development, evolving from Junior Developer to technical leadership while staying deeply immersed in code — my core passion. Expert in building scalable, high-quality applications with a focus on clean architecture, comprehensive testing, zero technical debt, and proactive obsolescence management. Proven in delivering robust systems at scale, I seek roles as a senior contributor or freelance specialist where I can drive technical excellence through direct coding, architecture, and optimizations.",
   "skills": {
-    "frontend": ["React (Hooks, Server Components)", "TypeScript (Advanced)", "JavaScript", "Tailwind CSS", "Zustand", "React Query", "Jest", "Cypress"],
-    "backend": ["Node.js (Advanced)", "NestJS", "Express", "TypeScript"],
-    "databases": ["Prisma", "PostgreSQL", "MongoDB", "Redis", "MySQL", "Oracle"],
-    "devops": ["Docker", "AWS (EC2, S3, Lambda)", "CI/CD (GitHub Actions)", "Git"],
-    "other": ["Microservices", "GraphQL", "Clean/Hexagonal Architecture", "TDD/BDD", "Performance Optimization"]
+    "frontend": [
+      { "name": "React",        "slug": "react",        "note": "Hooks, Server Components" },
+      { "name": "TypeScript",   "slug": "typescript",   "note": "Advanced" },
+      { "name": "JavaScript",   "slug": "javascript",   "note": null },
+      { "name": "Tailwind CSS", "slug": "tailwindcss",  "note": null },
+      { "name": "Zustand",      "slug": "zustand",      "note": null },
+      { "name": "React Query",  "slug": "reactquery",   "note": null },
+      { "name": "Jest",         "slug": "jest",         "note": null },
+      { "name": "Cypress",      "slug": "cypress",      "note": null }
+    ],
+    "backend": [
+      { "name": "Node.js",  "slug": "nodedotjs", "note": "Advanced" },
+      { "name": "NestJS",   "slug": "nestjs",    "note": null },
+      { "name": "Express",  "slug": "express",   "note": null }
+    ],
+    "databases": [
+      { "name": "PostgreSQL", "slug": "postgresql", "note": null },
+      { "name": "MongoDB",    "slug": "mongodb",    "note": null },
+      { "name": "Redis",      "slug": "redis",      "note": null },
+      { "name": "MySQL",      "slug": "mysql",      "note": null },
+      { "name": "Oracle",     "slug": "oracle",     "note": null },
+      { "name": "Prisma",     "slug": "prisma",     "note": null }
+    ],
+    "devops": [
+      { "name": "Docker",         "slug": "docker",        "note": null },
+      { "name": "AWS",            "slug": "amazonaws",     "note": "EC2, S3, Lambda" },
+      { "name": "GitHub Actions", "slug": "githubactions", "note": null },
+      { "name": "Git",            "slug": "git",           "note": null }
+    ],
+    "other": [
+      { "name": "GraphQL",             "slug": "graphql", "note": null },
+      { "name": "Microservices",       "slug": null,      "note": null },
+      { "name": "Clean Architecture",  "slug": null,      "note": "Hexagonal" },
+      { "name": "TDD / BDD",           "slug": null,      "note": null },
+      { "name": "Performance",         "slug": null,      "note": "Optimization" }
+    ]
   },
   "experience": [
     {

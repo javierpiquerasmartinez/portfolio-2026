@@ -13,5 +13,12 @@
   "nav.stack": "Stack",
   "nav.contact": "Contact",
   "nav.menu.open": "Open navigation menu",
-  "nav.menu.close": "Close navigation menu"
+  "nav.menu.close": "Close navigation menu",
+  "stack.number": "03",
+  "stack.label": "Technical Stack",
+  "stack.category.frontend": "Frontend",
+  "stack.category.backend": "Backend",
+  "stack.category.databases": "Databases",
+  "stack.category.devops": "DevOps",
+  "stack.category.other": "Other"
 }

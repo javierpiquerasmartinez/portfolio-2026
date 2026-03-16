@@ -1,0 +1,97 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import StackCategory from './StackCategory.astro';
+import type { Translations } from '../i18n/utils';
+import cvData from '../data/cv.json';
+
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+
+const categories = [
+  { key: 'frontend',  label: t['stack.category.frontend'],  skills: cvData.skills.frontend },
+  { key: 'backend',   label: t['stack.category.backend'],   skills: cvData.skills.backend },
+  { key: 'databases', label: t['stack.category.databases'], skills: cvData.skills.databases },
+  { key: 'devops',    label: t['stack.category.devops'],    skills: cvData.skills.devops },
+  { key: 'other',     label: t['stack.category.other'],     skills: cvData.skills.other },
+];
+---
+
+<section class="stack" id="stack" aria-label={t['stack.label']}>
+  <div class="stack__inner">
+    <SectionHeading label={t['stack.label']} number={t['stack.number']} />
+    <div class="stack__grid">
+      {categories.map((cat) => (
+        <StackCategory label={cat.label} skills={cat.skills} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stack {
+    padding: clamp(4rem, 10vw, 8rem) clamp(1.25rem, 6vw, 8rem);
+  }
+
+  .stack__inner {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .stack__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 4vw, 5rem);
+    margin-top: clamp(2rem, 4vw, 3rem);
+  }
+
+  @media (max-width: 640px) {
+    .stack__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const categories = document.querySelectorAll<HTMLElement>('.stack-category');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion) {
+    document.querySelectorAll('.stack-badge').forEach((el) => el.classList.add('is-visible'));
+  } else {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const categoryEl = entry.target;
+            const badges = categoryEl.querySelectorAll<HTMLElement>('.stack-badge');
+            badges.forEach((badge, i) => {
+              badge.style.transitionDelay = `${i * 60}ms`;
+              badge.classList.add('is-visible');
+            });
+            observer.unobserve(categoryEl);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    categories.forEach((el) => observer.observe(el));
+  }
+
+  categories.forEach((category) => {
+    const badges = category.querySelectorAll('.stack-badge');
+    badges.forEach((badge) => {
+      badge.addEventListener('mouseenter', () => {
+        badges.forEach((other) => {
+          if (other !== badge) other.classList.add('is-dimmed');
+        });
+      });
+      badge.addEventListener('mouseleave', () => {
+        badges.forEach((other) => other.classList.remove('is-dimmed'));
+      });
+    });
+  });
+</script>
