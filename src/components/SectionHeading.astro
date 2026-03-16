@@ -8,47 +8,32 @@ const { label, number } = Astro.props;
 ---
 
 <div class="section-heading">
-  <div class="section-heading__meta">
-    {number && <span class="section-heading__number" aria-hidden="true">{number}</span>}
-    <span class="section-heading__label">{label}</span>
-  </div>
-  <div class="section-heading__line" aria-hidden="true"></div>
+  {number && <span class="section-heading__number" aria-hidden="true">{number}</span>}
+  <h2 class="section-heading__title">{label}</h2>
 </div>
 
 <style>
   .section-heading {
     display: flex;
-    align-items: center;
-    gap: 1.25rem;
+    flex-direction: column;
+    gap: 0.4rem;
     margin-bottom: 3rem;
   }
 
-  .section-heading__meta {
-    display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
-    flex-shrink: 0;
-  }
-
   .section-heading__number {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     font-weight: 700;
     color: var(--color-accent);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     font-variant-numeric: tabular-nums;
   }
 
-  .section-heading__label {
-    font-size: clamp(0.65rem, 1.2vw, 0.75rem);
-    font-weight: 500;
-    letter-spacing: 0.2em;
+  .section-heading__title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
-  }
-
-  .section-heading__line {
-    flex: 1;
-    height: 1px;
-    background-color: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    line-height: 1;
   }
 </style>
