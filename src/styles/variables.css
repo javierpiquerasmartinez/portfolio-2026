@@ -1,0 +1,12 @@
+:root {
+  --color-bg: #0a0a0a;
+  --color-accent: #E8FF47;
+
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --text-muted:  rgba(255, 255, 255, 0.5);
+  --text-faded:  rgba(255, 255, 255, 0.4);
+
+  --accent-dim:  rgba(232, 255, 71, 0.4);
+  --accent-glow: rgba(232, 255, 71, 0.6);
+}

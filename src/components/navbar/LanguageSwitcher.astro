@@ -1,0 +1,48 @@
+---
+import type { Locale } from '../../i18n/utils';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+
+const altLang = lang === 'en' ? 'es' : 'en';
+const altHref = lang === 'en' ? '/es/' : '/';
+---
+
+<a
+  href={altHref}
+  class="navbar__lang"
+  lang={altLang}
+  hreflang={altLang}
+  aria-label={`Switch to ${altLang.toUpperCase()}`}
+>
+  {altLang.toUpperCase()}
+</a>
+
+<style>
+  .navbar__lang {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-faded);
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0.25em 0.6em;
+    border-radius: 3px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .navbar__lang:hover,
+  .navbar__lang:focus-visible {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .navbar__lang {
+      transition: none;
+    }
+  }
+</style>

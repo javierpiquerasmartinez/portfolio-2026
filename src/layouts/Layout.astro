@@ -2,6 +2,9 @@
 import Navbar from '../components/Navbar.astro';
 import { useTranslations } from '../i18n/utils';
 import type { Locale } from '../i18n/utils';
+import '../styles/variables.css';
+import '../styles/animations.css';
+import '../styles/utilities.css';
 
 interface Props {
   title: string;
@@ -18,6 +21,9 @@ const t = useTranslations(lang);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
   <body>
@@ -25,40 +31,3 @@ const t = useTranslations(lang);
     <slot />
   </body>
 </html>
-
-<style is:global>
-  @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
-
-  :root {
-    --color-bg: #0a0a0a;
-    --color-accent: #E8FF47;
-  }
-
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-  }
-
-  [id] {
-    scroll-margin-top: 3.5rem;
-  }
-
-  body {
-    background-color: var(--color-bg);
-    color: #ffffff;
-    font-family: 'Geist', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-</style>

@@ -1,0 +1,56 @@
+---
+import type { Translations } from '../../i18n/utils';
+
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+---
+
+<button
+  id="nav-toggle"
+  class="navbar__hamburger"
+  aria-controls="nav-menu"
+  aria-expanded="false"
+  aria-label={t['nav.menu.open']}
+  data-open-label={t['nav.menu.open']}
+  data-close-label={t['nav.menu.close']}
+>
+  <span class="navbar__bar"></span>
+  <span class="navbar__bar"></span>
+  <span class="navbar__bar"></span>
+</button>
+
+<style>
+  .navbar__hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+
+  .navbar__bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 1px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  @media (max-width: 640px) {
+    .navbar__hamburger {
+      display: flex;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .navbar__bar {
+      transition: none;
+    }
+  }
+</style>

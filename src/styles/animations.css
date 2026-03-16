@@ -1,0 +1,24 @@
+@keyframes slide-from-top {
+  from { opacity: 0; transform: translateY(-3rem); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-from-bottom {
+  from { opacity: 0; transform: translateY(3rem); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(0.75rem); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scroll-dot {
+  from { transform: translateY(0); }
+  to   { transform: translateY(28px); }
+}

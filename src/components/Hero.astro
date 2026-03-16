@@ -64,7 +64,7 @@ const { t } = Astro.props;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation-duration: 0.8s;
-    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-timing-function: var(--ease-smooth);
     animation-fill-mode: both;
   }
 
@@ -77,18 +77,6 @@ const { t } = Astro.props;
   .from-top    { animation-name: slide-from-top; }
   .from-bottom { animation-name: slide-from-bottom; }
 
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
   .hero__title {
     font-size: clamp(0.85rem, 2vw, 1.25rem);
     font-weight: 400;
@@ -96,10 +84,9 @@ const { t } = Astro.props;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.45);
     opacity: 0;
-    animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
+    animation: fade-up 0.6s var(--ease-smooth) 0.55s forwards;
   }
 
-  /* CTA row */
   .hero__cta-row {
     display: flex;
     align-items: center;
@@ -108,7 +95,7 @@ const { t } = Astro.props;
     gap: 0.5em;
     font-size: clamp(0.75rem, 1.5vw, 1rem);
     opacity: 0;
-    animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
+    animation: fade-up 0.6s var(--ease-smooth) 0.75s forwards;
   }
 
   .hero__available {
@@ -137,7 +124,6 @@ const { t } = Astro.props;
     text-underline-offset: 3px;
   }
 
-  /* Scroll indicator */
   .scroll-indicator {
     position: absolute;
     bottom: 2.5rem;
@@ -160,53 +146,14 @@ const { t } = Astro.props;
     animation: scroll-dot 1.4s ease-in-out 1.6s infinite alternate;
   }
 
-  /* Keyframes */
-  @keyframes slide-from-top {
-    from { opacity: 0; transform: translateY(-3rem); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes slide-from-bottom {
-    from { opacity: 0; transform: translateY(3rem); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fade-up {
-    from { opacity: 0; transform: translateY(0.75rem); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fade-in {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-
-  @keyframes scroll-dot {
-    from { transform: translateY(0); }
-    to   { transform: translateY(28px); }
-  }
-
-  /* Accesibilidad */
   @media (prefers-reduced-motion: reduce) {
-    .letter {
-      animation: none;
-      opacity: 1;
-      transform: none;
-    }
-
-    .hero__title {
-      animation: none;
-      opacity: 1;
-    }
-
-    .hero__cta-row {
-      animation: none;
-      opacity: 1;
-    }
-
+    .letter,
+    .hero__title,
+    .hero__cta-row,
     .scroll-indicator {
       animation: none;
       opacity: 1;
+      transform: none;
     }
 
     .scroll-indicator__dot {
