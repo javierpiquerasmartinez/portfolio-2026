@@ -70,4 +70,7 @@ Será multiidioma, en inglés por defecto pero el usuario podrá cambiar a Espa�
 - Variables de entorno necesarias: <!-- p.ej. RESEND_API_KEY -->
 
 # Despliegue
+- Plataforma: Vercel (sitio estático, sin adapter)
+- Build command: `npm run build`
+- Output directory: `dist`
 - URL: <!-- dominio personalizado o subdominio de Vercel -->
