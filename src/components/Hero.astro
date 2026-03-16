@@ -17,7 +17,7 @@ const { t } = Astro.props;
       <span class="letter from-bottom">E</span>
       <span class="letter from-top">V</span>
     </h1>
-    <p class="hero__fullname">{t['hero.fullname']}</p>
+    <span class="sr-only">{t['hero.fullname']}</span>
     <p class="hero__title">{t['hero.subtitle']}</p>
     <div class="hero__cta-row">
       <span class="hero__available">{t['hero.available']}</span>
@@ -51,10 +51,10 @@ const { t } = Astro.props;
   .hero__name {
     display: flex;
     gap: 0.01em;
-    font-size: clamp(3.5rem, 14vw, 15rem);
+    font-size: clamp(4rem, 17vw, 18rem);
     font-weight: 800;
     line-height: 1;
-    margin-bottom: -0.5rem;
+    padding: 0 2vw;
   }
 
   .letter {
@@ -77,13 +77,16 @@ const { t } = Astro.props;
   .from-top    { animation-name: slide-from-top; }
   .from-bottom { animation-name: slide-from-bottom; }
 
-  .hero__fullname {
-    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-    font-weight: 400;
-    color: #ffffff;
-    letter-spacing: 0.05em;
-    opacity: 0;
-    animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   .hero__title {
