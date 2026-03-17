@@ -35,44 +35,46 @@ const allSkills = [
 // Current employer
 const currentJob = cv.experience.find((e) => e.current);
 
-const personSchema = {
+const graphSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: cv.personal.name,
-  jobTitle: cv.personal.title,
-  description: cv.about,
-  image: ogImageAbsolute,
-  url: siteUrl,
-  email: cv.personal.email,
-  knowsAbout: allSkills,
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Valencia',
-    addressCountry: 'ES',
-  },
-  ...(currentJob && {
-    worksFor: {
-      '@type': 'Organization',
-      name: currentJob.company,
+  '@graph': [
+    {
+      '@type': 'Person',
+      name: cv.personal.name,
+      jobTitle: cv.personal.title,
+      description: cv.about,
+      image: ogImageAbsolute,
+      url: siteUrl,
+      email: cv.personal.email,
+      knowsAbout: allSkills,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Valencia',
+        addressCountry: 'ES',
+      },
+      ...(currentJob && {
+        worksFor: {
+          '@type': 'Organization',
+          name: currentJob.company,
+        },
+      }),
+      sameAs: [
+        cv.personal.linkedin,
+        cv.personal.github,
+      ],
     },
-  }),
-  sameAs: [
-    cv.personal.linkedin,
-    cv.personal.github,
+    {
+      '@type': 'WebSite',
+      url: siteUrl,
+      name: title,
+      description: description,
+      inLanguage: ['en', 'es'],
+      author: {
+        '@type': 'Person',
+        name: cv.personal.name,
+      },
+    },
   ],
-};
-
-const websiteSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  url: siteUrl,
-  name: 'Javier Piqueras — Software Engineer',
-  description: description,
-  inLanguage: ['en', 'es'],
-  author: {
-    '@type': 'Person',
-    name: cv.personal.name,
-  },
 };
 ---
 
@@ -109,4 +111,4 @@ const websiteSchema = {
 <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
 
 <!-- Structured Data (JSON-LD) -->
-<script type="application/ld+json" is:inline set:html={JSON.stringify([personSchema, websiteSchema])} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(graphSchema)} />
