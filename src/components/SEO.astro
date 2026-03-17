@@ -14,7 +14,7 @@ const {
   description,
   lang,
   canonicalUrl,
-  ogImage = '/og-image.svg',
+  ogImage = '/og-image.png',
 } = Astro.props;
 
 const siteUrl = 'https://javipiqueras.dev';
@@ -67,7 +67,7 @@ const websiteSchema = {
   '@type': 'WebSite',
   url: siteUrl,
   name: 'Javier Piqueras — Software Engineer',
-  description: 'Portfolio of Javier Piqueras, Senior Fullstack Software Engineer based in Valencia, Spain.',
+  description: description,
   inLanguage: ['en', 'es'],
   author: {
     '@type': 'Person',
@@ -109,4 +109,4 @@ const websiteSchema = {
 <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
 
 <!-- Structured Data (JSON-LD) -->
-<script type="application/ld+json" set:html={JSON.stringify([personSchema, websiteSchema])} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify([personSchema, websiteSchema])} />
