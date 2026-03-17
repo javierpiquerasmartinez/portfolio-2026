@@ -1,0 +1,66 @@
+---
+import cv from '../data/cv.json';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: 'en' | 'es';
+  canonicalUrl: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  lang,
+  canonicalUrl,
+  ogImage = '/jp-image.png',
+} = Astro.props;
+
+const siteUrl = 'https://javipiqueras.dev';
+const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+
+const ogLocale = lang === 'es' ? 'es_ES' : 'en_US';
+const ogLocaleAlternate = lang === 'es' ? 'en_US' : 'es_ES';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: cv.personal.name,
+  jobTitle: cv.personal.title,
+  url: siteUrl,
+  email: cv.personal.email,
+  sameAs: [
+    cv.personal.linkedin,
+    cv.personal.github,
+  ],
+};
+---
+
+<!-- Primary Meta Tags -->
+<meta name="description" content={description} />
+<meta name="theme-color" content="#0a0a0a" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageAbsolute} />
+<meta property="og:locale" content={ogLocale} />
+<meta property="og:locale:alternate" content={ogLocaleAlternate} />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageAbsolute} />
+
+<!-- Canonical & Hreflang -->
+<link rel="canonical" href={canonicalUrl} />
+<link rel="alternate" hreflang="en" href={`${siteUrl}/`} />
+<link rel="alternate" hreflang="es" href={`${siteUrl}/es/`} />
+<link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
+
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />

@@ -1,5 +1,6 @@
 ---
 import Navbar from '../components/Navbar.astro';
+import SEO from '../components/SEO.astro';
 import { useTranslations } from '../i18n/utils';
 import type { Locale } from '../i18n/utils';
 import '../styles/variables.css';
@@ -8,11 +9,13 @@ import '../styles/utilities.css';
 
 interface Props {
   title: string;
+  description: string;
   lang: Locale;
 }
 
-const { title, lang } = Astro.props;
+const { title, description, lang } = Astro.props;
 const t = useTranslations(lang);
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
 <html lang={lang}>
@@ -25,6 +28,7 @@ const t = useTranslations(lang);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet" />
     <title>{title}</title>
+    <SEO title={title} description={description} lang={lang} canonicalUrl={canonicalUrl} />
   </head>
   <body>
     <Navbar t={t} lang={lang} />
