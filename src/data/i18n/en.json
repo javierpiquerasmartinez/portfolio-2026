@@ -49,6 +49,7 @@
   "contact.form.sending": "Sending...",
   "contact.error.required": "This field is required.",
   "contact.error.email": "Enter a valid email address.",
+  "contact.error.server": "Something went wrong. Please try again.",
   "contact.success.title": "Message sent.",
   "contact.success.body": "I'll be in touch soon."
 }

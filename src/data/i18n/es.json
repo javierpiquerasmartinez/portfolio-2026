@@ -49,6 +49,7 @@
   "contact.form.sending": "Enviando...",
   "contact.error.required": "Este campo es obligatorio.",
   "contact.error.email": "Introduce un email válido.",
+  "contact.error.server": "Algo salió mal. Inténtalo de nuevo.",
   "contact.success.title": "Mensaje enviado.",
   "contact.success.body": "Estaré en contacto pronto."
 }

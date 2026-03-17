@@ -59,6 +59,8 @@ const { email, linkedin, github } = cv.personal;
           data-msg-required={t['contact.error.required']}
           data-msg-email={t['contact.error.email']}
           data-msg-sending={t['contact.form.sending']}
+          data-msg-submit={t['contact.form.submit']}
+          data-msg-server={t['contact.error.server']}
         >
           <div class="field">
             <label for="contact-name">{t['contact.form.name']}</label>
@@ -98,6 +100,7 @@ const { email, linkedin, github } = cv.personal;
           <button type="submit" class="contact__submit">
             {t['contact.form.submit']}
           </button>
+          <span class="form__error-server" aria-live="polite"></span>
         </form>
 
         <!-- Success state -->
@@ -122,6 +125,9 @@ const { email, linkedin, github } = cv.personal;
     const MSG_REQUIRED = form.dataset.msgRequired ?? 'This field is required.';
     const MSG_EMAIL    = form.dataset.msgEmail    ?? 'Enter a valid email address.';
     const MSG_SENDING  = form.dataset.msgSending  ?? 'Sending...';
+    const MSG_SUBMIT   = form.dataset.msgSubmit   ?? 'Send message';
+    const MSG_SERVER   = form.dataset.msgServer   ?? 'Something went wrong. Please try again.';
+    const serverError  = form.querySelector('.form__error-server') as HTMLElement | null;
     const EMAIL_RE     = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     function getField(name: string) {
@@ -162,7 +168,7 @@ const { email, linkedin, github } = cv.personal;
       }
     });
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const nameField    = getField('name');
@@ -195,12 +201,25 @@ const { email, linkedin, github } = cv.personal;
 
       if (!valid) return;
 
-      // Simulate sending
       const btn = form!.querySelector('button[type="submit"]') as HTMLButtonElement;
       btn.disabled = true;
       btn.textContent = MSG_SENDING;
+      if (serverError) serverError.textContent = '';
 
-      setTimeout(() => {
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: nameField.value.trim(),
+            email: emailField.value.trim(),
+            message: messageField.value.trim(),
+          }),
+        });
+
+        const json = await res.json();
+        if (!res.ok || !json.ok) throw new Error(json.error ?? 'unknown');
+
         form!.style.opacity = '0';
         form!.style.transform = 'translateY(-0.5rem)';
         setTimeout(() => {
@@ -208,7 +227,12 @@ const { email, linkedin, github } = cv.personal;
           successEl!.removeAttribute('aria-hidden');
           successEl!.classList.add('visible');
         }, 300);
-      }, 800);
+
+      } catch {
+        btn.disabled = false;
+        btn.textContent = MSG_SUBMIT;
+        if (serverError) serverError.textContent = MSG_SERVER;
+      }
     });
   }
 
@@ -385,6 +409,12 @@ const { email, linkedin, github } = cv.personal;
     .field textarea.shake {
       animation: shake 0.3s ease;
     }
+  }
+
+  .form__error-server {
+    font-size: 0.8rem;
+    color: #ff5555;
+    min-height: 1rem;
   }
 
   /* Submit button */

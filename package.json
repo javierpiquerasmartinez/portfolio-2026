@@ -12,6 +12,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.0.4"
+    "@astrojs/vercel": "^10.0.1",
+    "astro": "^6.0.4",
+    "resend": "^6.9.4"
   }
 }

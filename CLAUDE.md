@@ -65,9 +65,11 @@ Será multiidioma, en inglés por defecto pero el usuario podrá cambiar a Espa�
 - Sección activa resaltada con color acento (`--color-accent`) + underline animado
 
 # Formulario de contacto
-<!-- Indica el servicio que usarás para gestionar el envío del formulario -->
-- Servicio: <!-- Resend, Formspree, EmailJS, Netlify Forms, etc. -->
-- Variables de entorno necesarias: <!-- p.ej. RESEND_API_KEY -->
+- Servicio: Resend (`resend` npm package)
+- Endpoint: `src/pages/api/contact.ts` (Vercel serverless function)
+- Variables de entorno necesarias: `RESEND_API_KEY`
+- FROM: `onboarding@resend.dev` (cambiar por dominio verificado en producción)
+- TO: `javierpiquerasmartinez@gmail.com`
 
 # Despliegue
 - Plataforma: Vercel (sitio estático, sin adapter)
