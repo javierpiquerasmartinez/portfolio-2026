@@ -56,6 +56,10 @@ src/
 └── styles/         # Global CSS
 ```
 
+## Pending Tasks
+
+- [ ] **OG image PNG**: Convert `public/og-image.svg` to `public/og-image.png` (1200×630px) for full Twitter/X compatibility. Once done, update the default in `src/components/SEO.astro`: `ogImage = '/og-image.png'`. Tools: Figma, Inkscape, or any online SVG→PNG converter.
+
 ## Deployment
 
 Deployed on Vercel. Build command: `npm run build`. Output: `dist/`.

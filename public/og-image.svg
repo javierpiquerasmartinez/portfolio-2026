@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+
+  <!-- Subtle grid accent top-left -->
+  <rect x="0" y="0" width="4" height="630" fill="#E8FF47" opacity="0.15"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#E8FF47" opacity="0.15"/>
+
+  <!-- Accent bar bottom -->
+  <rect x="80" y="530" width="120" height="4" fill="#E8FF47" rx="2"/>
+
+  <!-- Initials / Brand -->
+  <text x="80" y="200" font-family="Geist, ui-monospace, monospace" font-weight="700" font-size="120" fill="#E8FF47" letter-spacing="-4">JP</text>
+
+  <!-- Name -->
+  <text x="80" y="310" font-family="Geist, ui-sans-serif, sans-serif" font-weight="600" font-size="52" fill="#ffffff" letter-spacing="-1">Javier Piqueras</text>
+
+  <!-- Title -->
+  <text x="80" y="378" font-family="Geist, ui-sans-serif, sans-serif" font-weight="400" font-size="32" fill="#888888">Senior Software Engineer</text>
+
+  <!-- Subtitle -->
+  <text x="80" y="436" font-family="Geist, ui-sans-serif, sans-serif" font-weight="300" font-size="24" fill="#555555">10+ years · Valencia, Spain · Available for freelance</text>
+
+  <!-- Domain -->
+  <text x="80" y="560" font-family="Geist, ui-monospace, monospace" font-weight="400" font-size="22" fill="#E8FF47" opacity="0.7">javipiqueras.dev</text>
+
+  <!-- Right accent decoration -->
+  <circle cx="1050" cy="315" r="180" fill="none" stroke="#E8FF47" stroke-width="1.5" opacity="0.08"/>
+  <circle cx="1050" cy="315" r="120" fill="none" stroke="#E8FF47" stroke-width="1" opacity="0.05"/>
+  <text x="1050" y="340" font-family="Geist, ui-monospace, monospace" font-weight="700" font-size="80" fill="#E8FF47" opacity="0.12" text-anchor="middle">&lt;/&gt;</text>
+</svg>
