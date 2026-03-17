@@ -6,46 +6,154 @@
     "phone": "+34 655 601 562",
     "email": "javierpiquerasmartinez@gmail.com",
     "linkedin": "https://www.linkedin.com/in/javipiquerasm/",
-    "github": "https://github.com/javipiquerasm"
+    "github": "https://github.com/javierpiquerasmartinez"
   },
   "about": "Hands-on Fullstack Engineer with 10+ years in web development, evolving from Junior Developer to technical leadership while staying deeply immersed in code — my core passion. Expert in building scalable, high-quality applications with a focus on clean architecture, comprehensive testing, zero technical debt, and proactive obsolescence management. Proven in delivering robust systems at scale, I seek roles as a senior contributor or freelance specialist where I can drive technical excellence through direct coding, architecture, and optimizations.",
   "skills": {
     "frontend": [
-      { "name": "React",        "slug": "react",        "note": "Hooks, Server Components" },
-      { "name": "TypeScript",   "slug": "typescript",   "note": "Advanced" },
-      { "name": "JavaScript",   "slug": "javascript",   "note": null },
-      { "name": "Tailwind CSS", "slug": "tailwindcss",  "note": null },
-      { "name": "Zustand",      "slug": "zustand",      "note": null },
-      { "name": "React Query",  "slug": "reactquery",   "note": null },
-      { "name": "Jest",         "slug": "jest",         "note": null },
-      { "name": "Cypress",      "slug": "cypress",      "note": null },
-      { "name": "Astro",        "slug": "astro",        "note": null }
+      {
+        "name": "React",
+        "slug": "react",
+        "note": "Hooks, Server Components"
+      },
+      {
+        "name": "TypeScript",
+        "slug": "typescript",
+        "note": "Advanced"
+      },
+      {
+        "name": "JavaScript",
+        "slug": "javascript",
+        "note": null
+      },
+      {
+        "name": "Tailwind CSS",
+        "slug": "tailwindcss",
+        "note": null
+      },
+      {
+        "name": "Zustand",
+        "slug": "zustand",
+        "note": null
+      },
+      {
+        "name": "React Query",
+        "slug": "reactquery",
+        "note": null
+      },
+      {
+        "name": "Jest",
+        "slug": "jest",
+        "note": null
+      },
+      {
+        "name": "Cypress",
+        "slug": "cypress",
+        "note": null
+      },
+      {
+        "name": "Astro",
+        "slug": "astro",
+        "note": null
+      }
     ],
     "backend": [
-      { "name": "Node.js",  "slug": "nodedotjs", "note": "Advanced" },
-      { "name": "NestJS",   "slug": "nestjs",    "note": null },
-      { "name": "Express",  "slug": "express",   "note": null }
+      {
+        "name": "Node.js",
+        "slug": "nodedotjs",
+        "note": "Advanced"
+      },
+      {
+        "name": "NestJS",
+        "slug": "nestjs",
+        "note": null
+      },
+      {
+        "name": "Express",
+        "slug": "express",
+        "note": null
+      }
     ],
     "databases": [
-      { "name": "PostgreSQL", "slug": "postgresql", "note": null },
-      { "name": "MongoDB",    "slug": "mongodb",    "note": null },
-      { "name": "Redis",      "slug": "redis",      "note": null },
-      { "name": "MySQL",      "slug": "mysql",      "note": null },
-      { "name": "Oracle",     "slug": "oracle",     "note": null },
-      { "name": "Prisma",     "slug": "prisma",     "note": null }
+      {
+        "name": "PostgreSQL",
+        "slug": "postgresql",
+        "note": null
+      },
+      {
+        "name": "MongoDB",
+        "slug": "mongodb",
+        "note": null
+      },
+      {
+        "name": "Redis",
+        "slug": "redis",
+        "note": null
+      },
+      {
+        "name": "MySQL",
+        "slug": "mysql",
+        "note": null
+      },
+      {
+        "name": "Oracle",
+        "slug": "oracle",
+        "note": null
+      },
+      {
+        "name": "Prisma",
+        "slug": "prisma",
+        "note": null
+      }
     ],
     "devops": [
-      { "name": "Docker",         "slug": "docker",        "note": null },
-      { "name": "AWS",            "slug": "amazonaws",     "note": "EC2, S3, Lambda" },
-      { "name": "GitHub Actions", "slug": "githubactions", "note": null },
-      { "name": "Git",            "slug": "git",           "note": null }
+      {
+        "name": "Docker",
+        "slug": "docker",
+        "note": null
+      },
+      {
+        "name": "AWS",
+        "slug": "amazonaws",
+        "note": "EC2, S3, Lambda"
+      },
+      {
+        "name": "GitHub Actions",
+        "slug": "githubactions",
+        "note": null
+      },
+      {
+        "name": "Git",
+        "slug": "git",
+        "note": null
+      }
     ],
     "other": [
-      { "name": "GraphQL",             "slug": "graphql", "note": null },
-      { "name": "Microservices",       "slug": null,      "note": null },
-      { "name": "Clean Architecture",  "slug": null,      "note": "Hexagonal" },
-      { "name": "TDD / BDD",           "slug": null,      "note": null },
-      { "name": "Performance",         "slug": null,      "note": "Optimization" }
+      {
+        "name": "GraphQL",
+        "slug": "graphql",
+        "note": null
+      },
+      {
+        "name": "Microservices",
+        "slug": null,
+        "note": null
+      },
+      {
+        "name": "Clean Architecture",
+        "slug": null,
+        "note": "Hexagonal"
+      },
+      {
+        "name": "TDD / BDD",
+        "slug": null,
+        "note": null
+      },
+      {
+        "name": "Performance",
+        "slug": null,
+        "note": "Optimization"
+      }
     ]
   },
   "experience": [
@@ -69,7 +177,24 @@
         "Gestioné despliegues en la nube (AWS) con Docker/CI/CD, logrando actualizaciones sin downtime y cumplimiento de regulaciones financieras.",
         "Optimicé componentes Java legacy de alta disponibilidad, integrándolos con stacks modernos en JS."
       ],
-      "techStack": ["React", "Angular", "TypeScript", "JavaScript", "Node.js", "NestJS", "Express", "PostgreSQL", "MongoDB", "Redis", "AWS", "Docker", "CI/CD", "Jest", "Cypress", "Java"]
+      "techStack": [
+        "React",
+        "Angular",
+        "TypeScript",
+        "JavaScript",
+        "Node.js",
+        "NestJS",
+        "Express",
+        "PostgreSQL",
+        "MongoDB",
+        "Redis",
+        "AWS",
+        "Docker",
+        "CI/CD",
+        "Jest",
+        "Cypress",
+        "Java"
+      ]
     },
     {
       "title": "Technical Leader",
@@ -87,7 +212,16 @@
         "Diseñé e implementé funcionalidades escalables y conformes con la regulación, dando soporte a 5 países y más de 10.000 transacciones diarias.",
         "Optimicé el rendimiento y la seguridad, reduciendo incidencias con TDD y herramientas de observabilidad."
       ],
-      "techStack": ["React", "TypeScript", "Java", "Spring", "PostgreSQL", "Node.js", "MongoDB", "TDD"]
+      "techStack": [
+        "React",
+        "TypeScript",
+        "Java",
+        "Spring",
+        "PostgreSQL",
+        "Node.js",
+        "MongoDB",
+        "TDD"
+      ]
     },
     {
       "title": "Junior Consultant Engineer",
@@ -105,7 +239,16 @@
         "Implementé interfaces responsive y APIs, mejorando la experiencia de usuario para múltiples clientes.",
         "Colaboré en integraciones poniendo el foco en la calidad del código y el testing."
       ],
-      "techStack": ["Angular", "React", "TypeScript", "HTML5", "CSS3", "Java", "Spring", "Oracle"]
+      "techStack": [
+        "Angular",
+        "React",
+        "TypeScript",
+        "HTML5",
+        "CSS3",
+        "Java",
+        "Spring",
+        "Oracle"
+      ]
     }
   ],
   "education": [
@@ -129,8 +272,17 @@
     }
   ],
   "languages": [
-    { "language": "Spanish", "level": "Native" },
-    { "language": "English", "level": "C1 Advanced (High Level)" },
-    { "language": "French", "level": "B1 (Conversational)" }
+    {
+      "language": "Spanish",
+      "level": "Native"
+    },
+    {
+      "language": "English",
+      "level": "C1 Advanced (High Level)"
+    },
+    {
+      "language": "French",
+      "level": "B1 (Conversational)"
+    }
   ]
 }
