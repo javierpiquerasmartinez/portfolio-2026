@@ -1,0 +1,181 @@
+---
+import type { Translations } from '../i18n/utils';
+
+interface Project {
+  id: string;
+  name: string;
+  descriptionKey: string;
+  tech: string[];
+  liveUrl: string;
+  githubUrl: string;
+}
+
+interface Props {
+  project: Project;
+  t: Translations;
+}
+
+const { project, t } = Astro.props;
+const description = t[project.descriptionKey as keyof typeof t] ?? '';
+---
+
+<article class="project-card" data-card>
+  <div class="project-card__content">
+    <h3 class="project-card__name">{project.name}</h3>
+    <p class="project-card__description">{description}</p>
+    <ul class="project-card__tech" aria-label="Technologies">
+      {project.tech.map((tech) => (
+        <li class="project-card__badge">{tech}</li>
+      ))}
+    </ul>
+    <div class="project-card__links">
+      <a
+        href={project.liveUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="project-card__link project-card__link--live"
+      >
+        {t['projects.live']}
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a
+        href={project.githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="project-card__link project-card__link--github"
+      >
+        {t['projects.github']}
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .project-card {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.02);
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      600px circle at var(--x, 50%) var(--y, 50%),
+      rgba(232, 255, 71, 0.06),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .project-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .project-card:hover::before {
+    opacity: 1;
+  }
+
+  .project-card__content {
+    padding: clamp(1.5rem, 3vw, 2rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+  }
+
+  .project-card__name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .project-card__description {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin: 0;
+    flex: 1;
+  }
+
+  .project-card__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .project-card__badge {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.25rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .project-card__links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.25rem;
+  }
+
+  .project-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .project-card__link--live {
+    color: var(--color-accent);
+  }
+
+  .project-card__link--live:hover {
+    color: #ffffff;
+  }
+
+  .project-card__link--github {
+    color: var(--text-muted);
+  }
+
+  .project-card__link--github:hover {
+    color: #ffffff;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-card]').forEach((card) => {
+    card.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--x', `${x}%`);
+      card.style.setProperty('--y', `${y}%`);
+    });
+  });
+</script>

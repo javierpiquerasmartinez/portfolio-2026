@@ -1,0 +1,10 @@
+[
+  {
+    "id": "jp-astro-components",
+    "name": "jp-astro-components",
+    "descriptionKey": "projects.jp-astro-components.description",
+    "tech": ["Astro", "TypeScript", "CSS"],
+    "liveUrl": "https://jp-astro-components.vercel.app",
+    "githubUrl": "https://github.com/javierpiquerasmartinez/jp-astro-components"
+  }
+]

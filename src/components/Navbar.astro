@@ -147,7 +147,7 @@ const { t, lang } = Astro.props;
     }
 
     // --- Sección activa con IntersectionObserver ---
-    const sectionIds = ['hero', 'about', 'experience', 'stack', 'contact'];
+    const sectionIds = ['hero', 'projects', 'experience', 'stack', 'about', 'contact'];
     const sections = sectionIds
       .map(id => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
