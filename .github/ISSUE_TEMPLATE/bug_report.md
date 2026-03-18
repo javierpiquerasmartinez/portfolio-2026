@@ -22,6 +22,3 @@ assignees: ''
 -
 -
 
----
-
-@claude fix this issue
