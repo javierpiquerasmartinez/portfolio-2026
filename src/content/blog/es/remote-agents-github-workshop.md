@@ -107,6 +107,7 @@ permissions:
 
 jobs:
   claude:
+    if: github.event.comment.user.type != 'Bot'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
