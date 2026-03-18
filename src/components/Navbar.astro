@@ -11,12 +11,13 @@ interface Props {
 }
 
 const { t, lang } = Astro.props;
+const homeUrl = lang === 'en' ? '/#hero' : '/es/#hero';
 ---
 
 <header class="navbar" role="banner">
   <nav class="navbar__inner" aria-label="Main navigation">
 
-    <a href="#hero" class="navbar__brand" aria-label="Back to top">
+    <a href={homeUrl} class="navbar__brand" aria-label="Back to top">
       <Logo />
     </a>
 
