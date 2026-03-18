@@ -1,0 +1,150 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import BlogCard from './BlogCard.astro';
+import type { Translations, Locale } from '../i18n/utils';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  t: Translations;
+  lang: Locale;
+}
+
+const { t, lang } = Astro.props;
+
+const allPosts = await getCollection('blog', ({ id, data }) => {
+  return id.startsWith(`${lang}/`) && !data.draft;
+});
+
+const posts = allPosts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+const blogHref = lang === 'es' ? '/es/blog' : '/blog';
+
+// Only render if there are at least 2 published posts
+const shouldRender = posts.length >= 1;
+---
+
+{shouldRender && (
+  <section class="blog-preview" id="blog" aria-label={t['blog.section.title']}>
+    <div class="blog-preview__inner">
+      <SectionHeading label={t['blog.section.title']} number={t['blog.number']} />
+      <p class="blog-preview__subtitle">{t['blog.section.subtitle']}</p>
+      <div class="blog-preview__grid">
+        {posts.map((post) => {
+          const slug = post.id.replace(`${lang}/`, '').replace(/\.md$/, '');
+          return (
+            <BlogCard
+              title={post.data.title}
+              date={post.data.date}
+              excerpt={post.data.excerpt}
+              tags={post.data.tags}
+              slug={slug}
+              lang={lang}
+              t={t}
+            />
+          );
+        })}
+      </div>
+      <div class="blog-preview__footer">
+        <a href={blogHref} class="blog-preview__cta">
+          {t['blog.section.cta']} →
+        </a>
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .blog-preview {
+    padding: clamp(4rem, 10vw, 8rem) clamp(1.25rem, 6vw, 8rem);
+    max-width: 72rem;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .blog-preview.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .blog-preview__subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0.75rem 0 0;
+    line-height: 1.6;
+  }
+
+  .blog-preview__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+    margin-top: clamp(2rem, 4vw, 3rem);
+  }
+
+  .blog-preview__footer {
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .blog-preview__cta {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .blog-preview__cta:hover {
+    opacity: 0.75;
+  }
+
+  @media (max-width: 900px) {
+    .blog-preview__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .blog-preview__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blog-preview {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .blog-preview__cta {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const section = document.querySelector<HTMLElement>('.blog-preview');
+  if (section) {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      section.classList.add('is-visible');
+    } else {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            section.classList.add('is-visible');
+            observer.unobserve(section);
+          }
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(section);
+    }
+  }
+</script>

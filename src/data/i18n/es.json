@@ -14,6 +14,7 @@
   "nav.stack": "Stack",
   "nav.projects": "Proyectos",
   "nav.contact": "Contacto",
+  "nav.blog": "Blog",
   "nav.menu.open": "Abrir menú de navegación",
   "nav.menu.close": "Cerrar menú de navegación",
   "stack.number": "03",
@@ -58,5 +59,15 @@
   "contact.error.email": "Introduce un email válido.",
   "contact.error.server": "Algo salió mal. Inténtalo de nuevo.",
   "contact.success.title": "Mensaje enviado.",
-  "contact.success.body": "Estaré en contacto pronto."
+  "contact.success.body": "Estaré en contacto pronto.",
+  "blog.number": "06",
+  "blog.section.title": "Blog",
+  "blog.section.subtitle": "Reflexiones sobre ingeniería de software, herramientas y oficio.",
+  "blog.section.cta": "Ver todos los artículos",
+  "blog.listing.title": "Blog",
+  "blog.listing.subtitle": "Artículos sobre ingeniería de software y más.",
+  "blog.post.back": "← Volver al blog",
+  "blog.post.readTime": "min de lectura",
+  "blog.card.readMore": "Leer más →",
+  "blog.empty": "Sin artículos aún. Vuelve pronto."
 }

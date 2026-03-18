@@ -1,0 +1,99 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { useTranslations } from '../../i18n/utils';
+import { getCollection } from 'astro:content';
+
+const t = useTranslations('en');
+
+const allPosts = await getCollection('blog', ({ id, data }) => {
+  return id.startsWith('en/') && !data.draft;
+});
+
+const posts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout title={`${t['blog.listing.title']} · ${t['site.title']}`} description={t['blog.listing.subtitle']} lang="en">
+  <main class="blog-listing">
+    <div class="blog-listing__inner">
+      <header class="blog-listing__header">
+        <h1 class="blog-listing__title">{t['blog.listing.title']}</h1>
+        <p class="blog-listing__subtitle">{t['blog.listing.subtitle']}</p>
+      </header>
+
+      {posts.length === 0 ? (
+        <p class="blog-listing__empty">{t['blog.empty']}</p>
+      ) : (
+        <div class="blog-listing__grid">
+          {posts.map((post) => {
+            const slug = post.id.replace('en/', '').replace(/\.md$/, '');
+            return (
+              <BlogCard
+                title={post.data.title}
+                date={post.data.date}
+                excerpt={post.data.excerpt}
+                tags={post.data.tags}
+                slug={slug}
+                lang="en"
+                t={t}
+              />
+            );
+          })}
+        </div>
+      )}
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .blog-listing {
+    padding-top: 7rem;
+    padding-bottom: clamp(4rem, 10vw, 8rem);
+    padding-left: clamp(1.25rem, 6vw, 8rem);
+    padding-right: clamp(1.25rem, 6vw, 8rem);
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .blog-listing__header {
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .blog-listing__title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 0.75rem;
+    line-height: 1.1;
+  }
+
+  .blog-listing__subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .blog-listing__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .blog-listing__empty {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 900px) {
+    .blog-listing__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .blog-listing__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

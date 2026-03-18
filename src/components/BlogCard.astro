@@ -1,0 +1,155 @@
+---
+import type { Translations, Locale } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  date: Date;
+  excerpt: string;
+  tags: string[];
+  slug: string;
+  lang: Locale;
+  t: Translations;
+}
+
+const { title, date, excerpt, tags, slug, lang, t } = Astro.props;
+
+const href = lang === 'es' ? `/es/blog/${slug}` : `/blog/${slug}`;
+
+const formattedDate = date.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
+  month: 'short',
+  year: 'numeric',
+});
+
+// Estimate reading time from excerpt (placeholder; post pages compute from full content)
+---
+
+<article class="blog-card">
+  <a href={href} class="blog-card__link" aria-label={title}>
+    <div class="blog-card__meta">
+      <time datetime={date.toISOString()}>{formattedDate}</time>
+      {tags.length > 0 && (
+        <div class="blog-card__tags" aria-label="Tags">
+          {tags.slice(0, 2).map((tag) => (
+            <span class="blog-card__tag">{tag}</span>
+          ))}
+        </div>
+      )}
+    </div>
+    <h3 class="blog-card__title">{title}</h3>
+    <p class="blog-card__excerpt">{excerpt}</p>
+    <span class="blog-card__cta">{t['blog.card.readMore']}</span>
+  </a>
+</article>
+
+<style>
+  .blog-card {
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .blog-card:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .blog-card__link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+    position: relative;
+  }
+
+  .blog-card__link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--color-accent);
+    border-radius: 8px 0 0 8px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .blog-card:hover .blog-card__link::before {
+    opacity: 1;
+  }
+
+  .blog-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .blog-card__meta time {
+    font-size: 0.75rem;
+    color: var(--text-faded);
+    font-weight: 400;
+  }
+
+  .blog-card__tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .blog-card__tag {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    border-radius: 2px;
+    padding: 0.1em 0.45em;
+  }
+
+  .blog-card__title {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.35;
+    transition: transform 0.2s ease;
+  }
+
+  .blog-card:hover .blog-card__title {
+    transform: translateX(4px);
+  }
+
+  .blog-card__excerpt {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .blog-card__cta {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    margin-top: auto;
+    padding-top: 0.25rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blog-card,
+    .blog-card__link::before,
+    .blog-card__title {
+      transition: none;
+    }
+    .blog-card:hover .blog-card__title {
+      transform: none;
+    }
+  }
+</style>

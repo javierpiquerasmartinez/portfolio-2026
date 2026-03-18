@@ -6,6 +6,7 @@ import Stack from '../../components/Stack.astro';
 import AboutMe from '../../components/AboutMe.astro';
 import Projects from '../../components/Projects.astro';
 import Contact from '../../components/Contact.astro';
+import BlogPreview from '../../components/BlogPreview.astro';
 import { useTranslations } from '../../i18n/utils';
 
 const t = useTranslations('es');
@@ -17,5 +18,6 @@ const t = useTranslations('es');
   <Experience t={t} lang="es" />
   <Stack t={t} />
   <AboutMe t={t} />
+  <BlogPreview t={t} lang="es" />
   <Contact t={t} />
 </Layout>

@@ -1,19 +1,30 @@
 ---
-import type { Translations } from '../../i18n/utils';
+import type { Translations, Locale } from '../../i18n/utils';
 
 interface Props {
   t: Translations;
+  lang: Locale;
 }
 
-const { t } = Astro.props;
+const { t, lang } = Astro.props;
+const blogHref = lang === 'es' ? '/es/blog' : '/blog';
+const portfolioHref = lang === 'es' ? '/es/' : '/';
+const isBlog = Astro.url.pathname.startsWith('/blog') || Astro.url.pathname.startsWith('/es/blog');
 ---
 
 <ul class="navbar__links" role="list" id="nav-menu">
-  <li><a href="#projects"   class="navbar__link" data-section="projects">{t['nav.projects']}</a></li>
-  <li><a href="#experience" class="navbar__link" data-section="experience">{t['nav.experience']}</a></li>
-  <li><a href="#stack"      class="navbar__link" data-section="stack">{t['nav.stack']}</a></li>
-  <li><a href="#about"      class="navbar__link" data-section="about">{t['nav.about']}</a></li>
-  <li><a href="#contact"    class="navbar__link" data-section="contact">{t['nav.contact']}</a></li>
+  {isBlog ? (
+    <li><a href={portfolioHref} class="navbar__link">← Portfolio</a></li>
+  ) : (
+    <>
+      <li><a href="#projects"   class="navbar__link" data-section="projects">{t['nav.projects']}</a></li>
+      <li><a href="#experience" class="navbar__link" data-section="experience">{t['nav.experience']}</a></li>
+      <li><a href="#stack"      class="navbar__link" data-section="stack">{t['nav.stack']}</a></li>
+      <li><a href="#about"      class="navbar__link" data-section="about">{t['nav.about']}</a></li>
+      <li><a href="#contact"    class="navbar__link" data-section="contact">{t['nav.contact']}</a></li>
+      <li><a href={blogHref}    class="navbar__link">{t['nav.blog']}</a></li>
+    </>
+  )}
 </ul>
 
 <style>
