@@ -6,7 +6,7 @@ tags: ["IA", "Agentes", "Productividad", "Herramientas"]
 draft: false
 ---
 
-En un [artículo anterior](/blog/ai-driven-development) establecimos el panorama: modelos, editores, herramientas y la mentalidad del desarrollador como copiloto. Ese post trataba sobre *qué existe*. Este trata sobre qué ocurre cuando empujas ese paradigma más lejos — cuando la IA deja de ser un motor de sugerencias y se convierte en algo más parecido a un colaborador.
+En un [artículo anterior](/es/blog/ai-driven-development) establecimos el panorama: modelos, editores, herramientas y la mentalidad del desarrollador como copiloto. Ese post trataba sobre *qué existe*. Este trata sobre qué ocurre cuando empujas ese paradigma más lejos — cuando la IA deja de ser un motor de sugerencias y se convierte en algo más parecido a un colaborador.
 
 Ese cambio tiene nombre: agentes.
 
