@@ -264,6 +264,13 @@ const readTime = Math.max(1, Math.ceil(wordCount / 200));
     font-style: italic;
   }
 
+  .post__content :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin: 1.5rem 0;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .post__back a {
       transition: none;
