@@ -144,6 +144,9 @@ const { t, lang } = Astro.props;
         { threshold: 0, rootMargin: '-56px 0px 0px 0px' }
       );
       scrollObserver.observe(heroEl);
+    } else {
+      // Páginas sin hero (blog, etc.): activar siempre el efecto
+      navbar.classList.add('navbar--scrolled');
     }
 
     // --- Sección activa con IntersectionObserver ---
