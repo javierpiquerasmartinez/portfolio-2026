@@ -219,6 +219,43 @@ const readTime = Math.max(1, Math.ceil(wordCount / 200));
     padding: 0;
   }
 
+  .post__content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin: 0 0 1.75rem;
+  }
+
+  .post__content :global(thead) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .post__content :global(th) {
+    text-align: left;
+    font-weight: 600;
+    color: #ffffff;
+    padding: 0.6rem 1rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .post__content :global(td) {
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.75);
+    vertical-align: top;
+  }
+
+  .post__content :global(tr:last-child td) {
+    border-bottom: none;
+  }
+
+  .post__content :global(tr:hover td) {
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
   .post__content :global(blockquote) {
     border-left: 3px solid var(--color-accent);
     padding-left: 1.25rem;
