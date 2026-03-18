@@ -64,7 +64,7 @@ El editor es donde pasas el tiempo. El panorama de IA ha dividido los editores e
 
 ### VS Code
 
-La base. Funciona en todos los sistemas operativos, tiene el ecosistema de extensiones más grande y se integra con prácticamente cualquier herramienta de IA mediante extensiones. Agnóstico por naturaleza — no toma partido sobre qué modelo o herramienta usar. Si no sabes por dónde empezar, ya estás aquí.
+La base. Funciona en todos los sistemas operativos, tiene el ecosistema de extensiones más grande y se integra con prácticamente cualquier herramienta de IA mediante extensiones. Viene con **GitHub Copilot integrado de forma nativa** — el panel de chat de IA y las sugerencias inline están incluidos, sin instalación adicional, solo necesitas una suscripción a Copilot. Más allá de eso es agnóstico: puedes añadir cualquier otra herramienta (Continue, Codeium, Claude Code en el terminal) sin conflicto. Si no sabes por dónde empezar, ya estás aquí.
 
 ### Cursor
 

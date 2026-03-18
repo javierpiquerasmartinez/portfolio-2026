@@ -64,7 +64,7 @@ The editor is where you spend your time. The AI landscape has split editors into
 
 ### VS Code
 
-The baseline. Runs on every OS, has the largest extension ecosystem, and integrates with essentially every AI tool through extensions. AI-neutral by nature — it doesn't take a position on which model or tool you use. If you're not sure where to start, you're already here.
+The baseline. Runs on every OS, has the largest extension ecosystem, and integrates with essentially every AI tool through extensions. It ships with **GitHub Copilot natively integrated** — the AI chat panel and inline suggestions are built in, no separate installation needed, just a Copilot subscription. Beyond that it's AI-neutral: you can layer any other tool (Continue, Codeium, Claude Code in the terminal) on top without conflict. If you're not sure where to start, you're already here.
 
 ### Cursor
 

@@ -8,7 +8,10 @@ interface Props {
 const { lang } = Astro.props;
 
 const altLang = lang === 'en' ? 'es' : 'en';
-const altHref = lang === 'en' ? '/es/' : '/';
+const currentPath = Astro.url.pathname;
+const altHref = lang === 'en'
+  ? '/es' + currentPath
+  : currentPath.replace(/^\/es/, '') || '/';
 ---
 
 <a
