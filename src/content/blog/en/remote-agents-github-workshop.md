@@ -3,7 +3,7 @@ title: "Workshop: Fix a GitHub Issue with a Remote Agent — No Editor Required"
 date: 2026-03-18
 excerpt: "A practical walkthrough of how to assign a GitHub issue to a remote AI agent, let it plan and write the fix, and merge the resulting pull request — all from the browser."
 tags: ["AI", "Agents", "GitHub", "Workflow", "Tutorial"]
-draft: true
+draft: false
 ---
 
 In the [previous article](/blog/ai-agents-in-development) we talked about what agents really are, how they differ from chat, and where they live. Now it's time to get our hands dirty.
@@ -99,10 +99,19 @@ on:
   issues:
     types: [opened, assigned]
 
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  id-token: write
+
 jobs:
   claude:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -160,9 +169,11 @@ Or be more specific:
 
 > `@claude the scroll offset on mobile doesn't account for the fixed navbar height. Fix it and make sure desktop behaviour is unchanged.`
 
-<!-- CAPTURA: issue de GitHub con comentario "@claude fix this issue" -->
+![GitHub issue with @claude fix this issue comment](/blog/remote-agents-github-workshop/step-05-claude-reaction.png)
 
-GitHub Actions will pick it up immediately and the agent will start working. You'll see a new workflow run appear under the **Actions** tab of your repository.
+GitHub Actions will pick it up immediately and the agent will start working. You'll see a new workflow run appear under the **Actions** tab of your repository — first queued, then in progress.
+
+![GitHub Actions workflow running successfully](/blog/remote-agents-github-workshop/step-06-actions-success.png)
 
 The more context you give in the `@claude` comment, the better — especially if the issue description itself is sparse.
 
@@ -170,44 +181,43 @@ The more context you give in the `@claude` comment, the better — especially if
 
 ## 5. The Agent at Work
 
-Once you've assigned the task, the agent goes through a predictable loop: **understand → plan → act → verify**.
+Once triggered, the agent goes through a predictable loop: **understand → plan → act → commit**.
 
 ### What happens under the hood
 
-1. **Read the issue** — the agent reads the title, description, and any comments.
-2. **Explore the repository** — it navigates the file tree, reads relevant files, and builds a mental model of the codebase.
-3. **Plan the fix** — before writing a single line of code, it reasons about the approach. You can often see this reasoning in the conversation.
-4. **Write the code** — it makes targeted edits to the files identified in the plan.
-5. **Create a branch and commit** — changes go onto a new branch (usually named something like `fix/issue-42-navbar-scroll`).
-6. **Open a pull request** — the PR includes a description of what was changed and why.
+1. **Read the issue** — title, description, and all comments.
+2. **Explore the repository** — navigates the file tree, reads relevant files, builds a mental model of the codebase.
+3. **Plan the fix** — reasons about the approach before writing any code.
+4. **Write the code** — makes targeted edits to the files identified in the plan.
+5. **Commit to a new branch** — the branch is named automatically (e.g. `claude/issue-2-20260318-1250`).
 
-<!-- SCREENSHOT: Claude conversation showing the agent exploring files and planning -->
+When it's done, Claude posts a summary comment on the issue showing the steps it took, what it changed, and a **Create PR** link.
 
-### Monitoring progress
+![Claude's summary comment on the issue after completing the fix](/blog/remote-agents-github-workshop/step-07-claude-comment.png)
 
-You don't need to watch. That's the point of async. But if you're curious — or if you want to course-correct before the PR is opened — you can read the agent's reasoning in the Claude conversation window as it works.
+In this case Claude identified that `.hero__title` was rendering as a block element without explicit text alignment, causing the text to fall back to the browser default (left) on mobile. It added a single `text-align: center` declaration. Clean and scoped.
 
-<!-- SCREENSHOT: Claude conversation mid-task with file exploration and plan visible -->
+### A note on the Create PR step
 
-If the agent gets stuck or needs clarification (ambiguous issue, missing context) it will ask you before proceeding. This is intentional: it's better to pause and ask than to guess and produce a wrong fix.
+In the default configuration, Claude prepares the branch and commit but leaves the final PR creation to you. This is intentional — you stay in control of what gets proposed for review. Click **Create PR →** in the comment and GitHub pre-fills the title and description.
 
 ---
 
 ## 6. Reviewing the Pull Request
 
-When the agent finishes, a pull request will appear in your GitHub repository. Review it as you would any other PR.
+Once created, the PR looks like any other in your repository.
 
-<!-- SCREENSHOT: GitHub PR opened by the agent — title, description, and branch name -->
+![Pull request list showing the fix opened by Claude](/blog/remote-agents-github-workshop/step-08-pr-created.png)
 
 ### What to look for
 
-**The description** — a well-behaved agent writes a clear PR description: what the problem was, what it changed, and how to verify the fix. If the description is vague, that's a signal to look more carefully at the diff.
+**The description** — Claude writes a clear PR description: what the problem was, what it changed, and why. If the description is vague, look more carefully at the diff.
 
-**The diff** — is the change scoped to the problem? A fix for a scroll offset bug should not be touching unrelated files. If the agent made broader changes, read them carefully.
+**The diff** — is the change scoped to the problem? Here it's one line in one file — exactly what was asked.
 
-**Tests** — if your project has tests, check whether the agent added or updated them. Good agents do this automatically; if it didn't, you might want to add them before merging.
+![PR diff showing text-align: center added to .hero__title](/blog/remote-agents-github-workshop/step-09-pr-diff.png)
 
-<!-- SCREENSHOT: GitHub PR diff view showing the fix -->
+**Tests** — if your project has tests, check whether the agent added or updated them. If it didn't, consider adding them before merging.
 
 ### Before you merge
 
@@ -220,6 +230,8 @@ Run through this quick checklist:
 - [ ] You're happy to put your name on it
 
 If everything looks good, merge. If you want changes, leave a review comment on the PR — the agent can pick up the feedback and push a new commit.
+
+![Pull request successfully merged and closed](/blog/remote-agents-github-workshop/step-10-merged.png)
 
 ---
 
