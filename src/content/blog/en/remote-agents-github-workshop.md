@@ -2,7 +2,7 @@
 title: "Workshop: Fix a GitHub Issue with a Remote Agent — No Editor Required"
 date: 2026-03-18
 excerpt: "A practical walkthrough of how to assign a GitHub issue to a remote AI agent, let it plan and write the fix, and merge the resulting pull request — all from the browser."
-tags: ["AI", "Agents", "GitHub", "Workflow", "Tutorial"]
+tags: ["AI", "Agents", "GitHub", "Workflow", "Tutorial", "GH Actions"]
 draft: false
 ---
 

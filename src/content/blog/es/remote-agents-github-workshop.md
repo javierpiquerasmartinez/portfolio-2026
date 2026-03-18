@@ -2,7 +2,7 @@
 title: "Taller: Corrige un Issue de GitHub con un Agente Remoto — Sin Abrir el Editor"
 date: 2026-03-18
 excerpt: "Una guía práctica para asignar un issue de GitHub a un agente de IA remoto, dejar que planifique y escriba la corrección, y fusionar la pull request resultante — todo desde el navegador."
-tags: ["AI", "Agentes", "GitHub", "Flujo de Trabajo", "Tutorial"]
+tags: ["AI", "Agentes", "GitHub", "Flujo de Trabajo", "Tutorial", "GH Actions"]
 draft: false
 ---
 
