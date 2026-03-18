@@ -16,7 +16,12 @@ permissions:
 
 jobs:
   claude:
-    if: github.event.comment.user.type != 'Bot'
+    if: |
+      github.event.comment.user.type != 'Bot' &&
+      (
+        contains(github.event.comment.body, '@claude') ||
+        contains(github.event.issue.body, '@claude')
+      )
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
