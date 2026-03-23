@@ -11,6 +11,7 @@ interface Project {
   name: string;
   descriptionKey: string;
   detailKey?: string;
+  image?: string;
   tech: string[];
   liveUrl: string;
   repos: Repo[];
@@ -31,6 +32,15 @@ const hasModal = !!project.detailKey;
   data-card
   data-modal-trigger={hasModal ? `modal-${project.id}` : undefined}
 >
+  {project.image && (
+    <div class="project-card__thumbnail">
+      <canvas
+        class="project-card__thumbnail-img"
+        data-gif-src={project.image}
+        aria-label={`${project.name} preview`}
+      />
+    </div>
+  )}
   <div class="project-card__content">
     <h3 class="project-card__name">{project.name}</h3>
     <p class="project-card__description">{description}</p>
@@ -73,6 +83,8 @@ const hasModal = !!project.detailKey;
 <style>
   .project-card {
     position: relative;
+    display: flex;
+    flex-direction: column;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 0.75rem;
     background: rgba(255, 255, 255, 0.02);
@@ -113,12 +125,33 @@ const hasModal = !!project.detailKey;
     opacity: 1;
   }
 
+  .project-card__thumbnail {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: #050505;
+    flex-shrink: 0;
+  }
+
+  .project-card__thumbnail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .project-card:hover .project-card__thumbnail-img {
+    transform: scale(1.03);
+  }
+
   .project-card__content {
     padding: clamp(1.5rem, 3vw, 2rem);
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    height: 100%;
+    flex: 1;
   }
 
   .project-card__name {
@@ -194,6 +227,18 @@ const hasModal = !!project.detailKey;
 </style>
 
 <script>
+  // Draw first frame of each GIF onto its canvas (static preview)
+  document.querySelectorAll<HTMLCanvasElement>('canvas[data-gif-src]').forEach((canvas) => {
+    const src = canvas.dataset.gifSrc!;
+    const img = new Image();
+    img.onload = () => {
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      canvas.getContext('2d')?.drawImage(img, 0, 0);
+    };
+    img.src = src;
+  });
+
   document.querySelectorAll<HTMLElement>('[data-card]').forEach((card) => {
     // Radial gradient on mouse move
     card.addEventListener('mousemove', (e: MouseEvent) => {
