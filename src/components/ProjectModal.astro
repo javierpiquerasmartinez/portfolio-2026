@@ -43,18 +43,19 @@ const detail = project.detailKey ? (t[project.detailKey as keyof typeof t] ?? ''
       </div>
     )}
 
+    <button
+      class="project-modal__close"
+      data-modal-close={`modal-${project.id}`}
+      aria-label={t['projects.modal.close']}
+    >
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+
     <div class="project-modal__body">
       <div class="project-modal__header">
         <h2 class="project-modal__title">{project.name}</h2>
-        <button
-          class="project-modal__close"
-          data-modal-close={`modal-${project.id}`}
-          aria-label={t['projects.modal.close']}
-        >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </button>
       </div>
 
       {detail && (
@@ -164,11 +165,35 @@ const detail = project.detailKey ? (t[project.detailKey as keyof typeof t] ?? ''
     gap: 1.5rem;
   }
 
+  .project-modal__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: rgba(10, 10, 10, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0.375rem;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .project-modal__close:hover {
+    color: #ffffff;
+    background: rgba(10, 10, 10, 0.9);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
   .project-modal__header {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
   }
 
   .project-modal__title {
@@ -177,26 +202,6 @@ const detail = project.detailKey ? (t[project.detailKey as keyof typeof t] ?? ''
     letter-spacing: -0.02em;
     margin: 0;
     color: #ffffff;
-  }
-
-  .project-modal__close {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 0.375rem;
-    color: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-    transition: color 0.2s ease, background 0.2s ease;
-  }
-
-  .project-modal__close:hover {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.1);
   }
 
   .project-modal__detail {
