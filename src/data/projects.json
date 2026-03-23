@@ -1,26 +1,47 @@
 [
   {
-    "id": "jp-astro-components",
-    "name": "jp-astro-components",
-    "descriptionKey": "projects.jp-astro-components.description",
-    "detailKey": "projects.jp-astro-components.detail",
-    "tech": ["Astro", "TypeScript", "CSS"],
-    "liveUrl": "https://jp-astro-components.vercel.app",
-    "repos": [
-      { "label": "GitHub", "url": "https://github.com/javierpiquerasmartinez/jp-astro-components" }
-    ]
-  },
-  {
     "id": "radioassist",
     "name": "radioassist",
     "descriptionKey": "projects.radioassist.description",
     "detailKey": "projects.radioassist.detail",
     "image": "/projects/radioassist.gif",
-    "tech": ["React", "TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL"],
+    "tech": [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "Prisma",
+      "PostgreSQL"
+    ],
     "liveUrl": "https://radioassist-frontend.vercel.app/",
     "repos": [
-      { "label": "Frontend", "url": "https://github.com/javierpiquerasmartinez/radioassist-frontend" },
-      { "label": "Backend", "url": "https://github.com/javierpiquerasmartinez/radioassist-backend" }
+      {
+        "label": "Frontend",
+        "url": "https://github.com/javierpiquerasmartinez/radioassist-frontend"
+      },
+      {
+        "label": "Backend",
+        "url": "https://github.com/javierpiquerasmartinez/radioassist-backend"
+      }
+    ]
+  },
+  {
+    "id": "jp-astro-components",
+    "name": "jp-astro-components",
+    "descriptionKey": "projects.jp-astro-components.description",
+    "detailKey": "projects.jp-astro-components.detail",
+    "image": "/projects/jp-astro-components.gif",
+    "tech": [
+      "Astro",
+      "TypeScript",
+      "CSS"
+    ],
+    "liveUrl": "https://jp-astro-components.vercel.app",
+    "repos": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/javierpiquerasmartinez/jp-astro-components"
+      }
     ]
   }
 ]

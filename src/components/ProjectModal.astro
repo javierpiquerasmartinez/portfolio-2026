@@ -59,7 +59,11 @@ const detail = project.detailKey ? (t[project.detailKey as keyof typeof t] ?? ''
       </div>
 
       {detail && (
-        <p class="project-modal__detail">{detail}</p>
+        <div class="project-modal__detail">
+          {detail.split('\n\n').map((para: string) => (
+            <p>{para}</p>
+          ))}
+        </div>
       )}
 
       <div class="project-modal__section">
@@ -115,7 +119,7 @@ const detail = project.detailKey ? (t[project.detailKey as keyof typeof t] ?? ''
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 1rem;
     padding: 0;
-    overflow: hidden;
+    overflow: visible;
     color: #ffffff;
     opacity: 0;
     transform: scale(0.96);
@@ -138,8 +142,28 @@ const detail = project.detailKey ? (t[project.detailKey as keyof typeof t] ?? ''
   .project-modal__content {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    max-height: min(90vh, 800px);
+    border-radius: 1rem;
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+  }
+
+  .project-modal__content::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .project-modal__content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .project-modal__content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+  }
+
+  .project-modal__content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
   }
 
   .project-modal__image-wrap {
@@ -205,6 +229,12 @@ const detail = project.detailKey ? (t[project.detailKey as keyof typeof t] ?? ''
   }
 
   .project-modal__detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .project-modal__detail p {
     font-size: 0.9rem;
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.65);
@@ -287,6 +317,11 @@ const detail = project.detailKey ? (t[project.detailKey as keyof typeof t] ?? ''
       max-height: 100dvh;
       border-radius: 1rem 1rem 0 0;
       margin: auto auto 0;
+    }
+
+    .project-modal__content {
+      max-height: 100dvh;
+      border-radius: 1rem 1rem 0 0;
     }
 
     .project-modal__image {
