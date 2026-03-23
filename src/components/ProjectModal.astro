@@ -298,18 +298,6 @@ const detail = project.detailKey ? (t[project.detailKey as keyof typeof t] ?? ''
 
 <script>
   function initModals() {
-    // Open triggers
-    document.querySelectorAll<HTMLElement>('[data-modal-trigger]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const id = btn.dataset.modalTrigger!;
-        const modal = document.getElementById(id) as HTMLDialogElement | null;
-        if (modal) {
-          modal.showModal();
-          document.body.style.overflow = 'hidden';
-        }
-      });
-    });
-
     // Close buttons
     document.querySelectorAll<HTMLElement>('[data-modal-close]').forEach((btn) => {
       btn.addEventListener('click', () => {
