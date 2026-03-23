@@ -1,13 +1,18 @@
 ---
 import type { Translations } from '../i18n/utils';
 
+interface Repo {
+  label: string;
+  url: string;
+}
+
 interface Project {
   id: string;
   name: string;
   descriptionKey: string;
   tech: string[];
   liveUrl: string;
-  githubUrl: string;
+  repos: Repo[];
 }
 
 interface Props {
@@ -40,17 +45,19 @@ const description = t[project.descriptionKey as keyof typeof t] ?? '';
           <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
-      <a
-        href={project.githubUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="project-card__link project-card__link--github"
-      >
-        {t['projects.github']}
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-          <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+      {project.repos.map((repo) => (
+        <a
+          href={repo.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="project-card__link project-card__link--github"
+        >
+          {repo.label}
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      ))}
     </div>
   </div>
 </article>

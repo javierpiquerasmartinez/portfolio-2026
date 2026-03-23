@@ -53,8 +53,8 @@ Será multiidioma, en inglés por defecto pero el usuario podrá cambiar a Espa�
 
 # Secciones opcionales
 <!-- Indica si quieres incluir alguna de estas secciones adicionales -->
-- [ ] Projects: proyectos destacados con descripción, tecnologías y enlace
-- [ ] Blog / Artículos
+- [X] Projects: proyectos destacados con descripción, tecnologías y enlace
+- [X] Blog / Artículos
 - [ ] Testimonials / Recomendaciones
 
 # Navegación
@@ -75,4 +75,4 @@ Será multiidioma, en inglés por defecto pero el usuario podrá cambiar a Espa�
 - Plataforma: Vercel (sitio estático, sin adapter)
 - Build command: `npm run build`
 - Output directory: `dist`
-- URL: <!-- dominio personalizado o subdominio de Vercel -->
+- URL: [javipiqueras.dev](https://javipiqueras.dev/)

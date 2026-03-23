@@ -40,6 +40,7 @@
   "projects.live": "Live",
   "projects.github": "GitHub",
   "projects.jp-astro-components.description": "A reusable component library for Astro projects focused on typography, layout, and content components.",
+  "projects.radioassist.description": "Dictation application for automatic report generation tailored to breast radiologists, powered by AI.",
   "contact.number": "05",
   "contact.label": "Contact",
   "contact.subtitle": "Have a project in mind, or just want to connect? Drop me a line.",

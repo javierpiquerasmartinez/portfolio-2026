@@ -5,6 +5,19 @@
     "descriptionKey": "projects.jp-astro-components.description",
     "tech": ["Astro", "TypeScript", "CSS"],
     "liveUrl": "https://jp-astro-components.vercel.app",
-    "githubUrl": "https://github.com/javierpiquerasmartinez/jp-astro-components"
+    "repos": [
+      { "label": "GitHub", "url": "https://github.com/javierpiquerasmartinez/jp-astro-components" }
+    ]
+  },
+  {
+    "id": "radioassist",
+    "name": "radioassist",
+    "descriptionKey": "projects.radioassist.description",
+    "tech": ["React", "TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL"],
+    "liveUrl": "https://radioassist-frontend.vercel.app/",
+    "repos": [
+      { "label": "Frontend", "url": "https://github.com/javierpiquerasmartinez/radioassist-frontend" },
+      { "label": "Backend", "url": "https://github.com/javierpiquerasmartinez/radioassist-backend" }
+    ]
   }
 ]
