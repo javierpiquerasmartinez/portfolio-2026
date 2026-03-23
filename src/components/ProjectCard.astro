@@ -77,11 +77,17 @@ const hasModal = !!project.detailKey;
     border-radius: 0.75rem;
     background: rgba(255, 255, 255, 0.02);
     overflow: hidden;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, transform 0.25s ease, box-shadow 0.25s ease;
   }
 
   .project-card--clickable {
     cursor: pointer;
+  }
+
+  .project-card--clickable:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
   }
 
   .project-card::before {
@@ -99,7 +105,7 @@ const hasModal = !!project.detailKey;
     border-radius: inherit;
   }
 
-  .project-card:hover {
+  .project-card:not(.project-card--clickable):hover {
     border-color: rgba(255, 255, 255, 0.15);
   }
 
