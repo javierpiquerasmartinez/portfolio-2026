@@ -10,6 +10,7 @@ interface Project {
   id: string;
   name: string;
   descriptionKey: string;
+  detailKey?: string;
   tech: string[];
   liveUrl: string;
   repos: Repo[];
@@ -22,9 +23,14 @@ interface Props {
 
 const { project, t } = Astro.props;
 const description = t[project.descriptionKey as keyof typeof t] ?? '';
+const hasModal = !!project.detailKey;
 ---
 
-<article class="project-card" data-card>
+<article
+  class:list={['project-card', { 'project-card--clickable': hasModal }]}
+  data-card
+  data-modal-trigger={hasModal ? `modal-${project.id}` : undefined}
+>
   <div class="project-card__content">
     <h3 class="project-card__name">{project.name}</h3>
     <p class="project-card__description">{description}</p>
@@ -39,6 +45,7 @@ const description = t[project.descriptionKey as keyof typeof t] ?? '';
         target="_blank"
         rel="noopener noreferrer"
         class="project-card__link project-card__link--live"
+        data-stop-propagation
       >
         {t['projects.live']}
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
@@ -51,6 +58,7 @@ const description = t[project.descriptionKey as keyof typeof t] ?? '';
           target="_blank"
           rel="noopener noreferrer"
           class="project-card__link project-card__link--github"
+          data-stop-propagation
         >
           {repo.label}
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
@@ -69,7 +77,17 @@ const description = t[project.descriptionKey as keyof typeof t] ?? '';
     border-radius: 0.75rem;
     background: rgba(255, 255, 255, 0.02);
     overflow: hidden;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .project-card--clickable {
+    cursor: pointer;
+  }
+
+  .project-card--clickable:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
   }
 
   .project-card::before {
@@ -87,7 +105,7 @@ const description = t[project.descriptionKey as keyof typeof t] ?? '';
     border-radius: inherit;
   }
 
-  .project-card:hover {
+  .project-card:not(.project-card--clickable):hover {
     border-color: rgba(255, 255, 255, 0.15);
   }
 
@@ -177,6 +195,7 @@ const description = t[project.descriptionKey as keyof typeof t] ?? '';
 
 <script>
   document.querySelectorAll<HTMLElement>('[data-card]').forEach((card) => {
+    // Radial gradient on mouse move
     card.addEventListener('mousemove', (e: MouseEvent) => {
       const rect = card.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -184,5 +203,22 @@ const description = t[project.descriptionKey as keyof typeof t] ?? '';
       card.style.setProperty('--x', `${x}%`);
       card.style.setProperty('--y', `${y}%`);
     });
+
+    // Open modal on card click (if it has a trigger)
+    const modalId = card.dataset.modalTrigger;
+    if (modalId) {
+      card.addEventListener('click', () => {
+        const modal = document.getElementById(modalId) as HTMLDialogElement | null;
+        if (modal) {
+          modal.showModal();
+          document.body.style.overflow = 'hidden';
+        }
+      });
+
+      // Prevent internal links from triggering the card click
+      card.querySelectorAll<HTMLElement>('[data-stop-propagation]').forEach((el) => {
+        el.addEventListener('click', (e) => e.stopPropagation());
+      });
+    }
   });
 </script>
