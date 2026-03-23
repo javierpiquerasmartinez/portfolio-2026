@@ -21,8 +21,8 @@ const isBlog = Astro.url.pathname.startsWith('/blog') || Astro.url.pathname.star
       <li><a href="#experience" class="navbar__link" data-section="experience">{t['nav.experience']}</a></li>
       <li><a href="#stack"      class="navbar__link" data-section="stack">{t['nav.stack']}</a></li>
       <li><a href="#about"      class="navbar__link" data-section="about">{t['nav.about']}</a></li>
-      <li><a href="#contact"    class="navbar__link" data-section="contact">{t['nav.contact']}</a></li>
       <li><a href={blogHref}    class="navbar__link">{t['nav.blog']}</a></li>
+      <li><a href="#contact"    class="navbar__link" data-section="contact">{t['nav.contact']}</a></li>
     </>
   )}
 </ul>

@@ -6,7 +6,7 @@ tags: ["AI", "Agentes", "GitHub", "Flujo de Trabajo", "Tutorial", "GH Actions"]
 draft: false
 ---
 
-En el [artículo anterior](/blog/ai-agents-in-development) hablamos sobre qué son realmente los agentes, en qué se diferencian del chat y dónde viven. Ahora es momento de ponernos manos a la obra.
+En el [artículo anterior](/es/blog/ai-agents-in-development) hablamos sobre qué son realmente los agentes, en qué se diferencian del chat y dónde viven. Ahora es momento de ponernos manos a la obra.
 
 Este es un taller. Al final habrás asignado un issue real de GitHub a un agente de IA remoto, habrás visto cómo planifica y escribe la corrección, y habrás revisado la pull request que abrió — sin tocar el terminal ni el editor ni una sola vez.
 
@@ -259,4 +259,4 @@ Para eso, los agentes locales — o simplemente escribir el código tú mismo �
 
 ---
 
-*Este es el tercer artículo de una serie sobre trabajo con agentes de IA. Puedes leer las entradas anteriores: [Desarrollo Impulsado por IA](/blog/ai-driven-development) y [Agentes de IA en el Desarrollo](/blog/ai-agents-in-development).*
+*Este es el tercer artículo de una serie sobre trabajo con agentes de IA. Puedes leer las entradas anteriores: [Desarrollo Impulsado por IA](/es/blog/ai-driven-development) y [Agentes de IA en el Desarrollo](/es/blog/ai-agents-in-development).*
