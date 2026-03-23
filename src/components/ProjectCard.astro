@@ -10,6 +10,7 @@ interface Project {
   id: string;
   name: string;
   descriptionKey: string;
+  detailKey?: string;
   tech: string[];
   liveUrl: string;
   repos: Repo[];
@@ -58,6 +59,14 @@ const description = t[project.descriptionKey as keyof typeof t] ?? '';
           </svg>
         </a>
       ))}
+      {project.detailKey && (
+        <button
+          class="project-card__link project-card__link--details"
+          data-modal-trigger={`modal-${project.id}`}
+        >
+          Details
+        </button>
+      )}
     </div>
   </div>
 </article>
@@ -171,6 +180,19 @@ const description = t[project.descriptionKey as keyof typeof t] ?? '';
   }
 
   .project-card__link--github:hover {
+    color: #ffffff;
+  }
+
+  .project-card__link--details {
+    color: rgba(255, 255, 255, 0.35);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .project-card__link--details:hover {
     color: #ffffff;
   }
 </style>

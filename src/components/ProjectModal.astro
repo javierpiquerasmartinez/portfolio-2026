@@ -1,0 +1,342 @@
+---
+import type { Translations } from '../i18n/utils';
+
+interface Repo {
+  label: string;
+  url: string;
+}
+
+interface Project {
+  id: string;
+  name: string;
+  detailKey?: string;
+  image?: string;
+  tech: string[];
+  liveUrl: string;
+  repos: Repo[];
+}
+
+interface Props {
+  project: Project;
+  t: Translations;
+}
+
+const { project, t } = Astro.props;
+const detail = project.detailKey ? (t[project.detailKey as keyof typeof t] ?? '') : '';
+---
+
+<dialog
+  id={`modal-${project.id}`}
+  class="project-modal"
+  aria-modal="true"
+  aria-label={project.name}
+>
+  <div class="project-modal__content">
+    {project.image && (
+      <div class="project-modal__image-wrap">
+        <img
+          src={project.image}
+          alt={`${project.name} preview`}
+          class="project-modal__image"
+          loading="lazy"
+        />
+      </div>
+    )}
+
+    <div class="project-modal__body">
+      <div class="project-modal__header">
+        <h2 class="project-modal__title">{project.name}</h2>
+        <button
+          class="project-modal__close"
+          data-modal-close={`modal-${project.id}`}
+          aria-label={t['projects.modal.close']}
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      {detail && (
+        <p class="project-modal__detail">{detail}</p>
+      )}
+
+      <div class="project-modal__section">
+        <h3 class="project-modal__section-label">{t['projects.modal.tech']}</h3>
+        <ul class="project-modal__tech" aria-label="Technologies">
+          {project.tech.map((tech) => (
+            <li class="project-modal__badge">{tech}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="project-modal__section">
+        <h3 class="project-modal__section-label">{t['projects.modal.repos']}</h3>
+        <div class="project-modal__links">
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-modal__link project-modal__link--live"
+          >
+            {t['projects.live']}
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          {project.repos.map((repo) => (
+            <a
+              href={repo.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-modal__link project-modal__link--repo"
+            >
+              {repo.label}
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<style>
+  .project-modal {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(640px, calc(100vw - 2rem));
+    max-height: min(90vh, 800px);
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    padding: 0;
+    overflow: hidden;
+    color: #ffffff;
+    opacity: 0;
+    transform: scale(0.96);
+    transition:
+      opacity 0.25s var(--ease-smooth, cubic-bezier(0.16, 1, 0.3, 1)),
+      transform 0.25s var(--ease-smooth, cubic-bezier(0.16, 1, 0.3, 1));
+  }
+
+  .project-modal[open] {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .project-modal::backdrop {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .project-modal__content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .project-modal__image-wrap {
+    width: 100%;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: #0a0a0a;
+  }
+
+  .project-modal__image {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .project-modal__body {
+    padding: clamp(1.5rem, 4vw, 2rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .project-modal__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .project-modal__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: #ffffff;
+  }
+
+  .project-modal__close {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.375rem;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+
+  .project-modal__close:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .project-modal__detail {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0;
+  }
+
+  .project-modal__section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .project-modal__section-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+    margin: 0;
+  }
+
+  .project-modal__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .project-modal__badge {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.25rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .project-modal__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .project-modal__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .project-modal__link--live {
+    color: var(--color-accent, #E8FF47);
+  }
+
+  .project-modal__link--live:hover {
+    color: #ffffff;
+  }
+
+  .project-modal__link--repo {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .project-modal__link--repo:hover {
+    color: #ffffff;
+  }
+
+  @media (max-width: 640px) {
+    .project-modal {
+      width: 100vw;
+      max-height: 100dvh;
+      border-radius: 1rem 1rem 0 0;
+      margin: auto auto 0;
+    }
+
+    .project-modal__image {
+      max-height: 280px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-modal {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  function initModals() {
+    // Open triggers
+    document.querySelectorAll<HTMLElement>('[data-modal-trigger]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.modalTrigger!;
+        const modal = document.getElementById(id) as HTMLDialogElement | null;
+        if (modal) {
+          modal.showModal();
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
+    // Close buttons
+    document.querySelectorAll<HTMLElement>('[data-modal-close]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.modalClose!;
+        const modal = document.getElementById(id) as HTMLDialogElement | null;
+        if (modal) {
+          modal.close();
+          document.body.style.overflow = '';
+        }
+      });
+    });
+
+    // Close on backdrop click
+    document.querySelectorAll<HTMLDialogElement>('.project-modal').forEach((modal) => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.close();
+          document.body.style.overflow = '';
+        }
+      });
+
+      // Restore overflow when closed via Escape key
+      modal.addEventListener('close', () => {
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  initModals();
+</script>

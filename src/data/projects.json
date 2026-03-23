@@ -3,6 +3,7 @@
     "id": "jp-astro-components",
     "name": "jp-astro-components",
     "descriptionKey": "projects.jp-astro-components.description",
+    "detailKey": "projects.jp-astro-components.detail",
     "tech": ["Astro", "TypeScript", "CSS"],
     "liveUrl": "https://jp-astro-components.vercel.app",
     "repos": [
@@ -13,6 +14,8 @@
     "id": "radioassist",
     "name": "radioassist",
     "descriptionKey": "projects.radioassist.description",
+    "detailKey": "projects.radioassist.detail",
+    "image": "/projects/radioassist.gif",
     "tech": ["React", "TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL"],
     "liveUrl": "https://radioassist-frontend.vercel.app/",
     "repos": [

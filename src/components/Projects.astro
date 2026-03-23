@@ -1,6 +1,7 @@
 ---
 import SectionHeading from './SectionHeading.astro';
 import ProjectCard from './ProjectCard.astro';
+import ProjectModal from './ProjectModal.astro';
 import type { Translations } from '../i18n/utils';
 import projects from '../data/projects.json';
 
@@ -21,6 +22,10 @@ const { t } = Astro.props;
     </div>
   </div>
 </section>
+
+{projects.map((project) => (
+  <ProjectModal project={project} t={t} />
+))}
 
 <style>
   .projects {
