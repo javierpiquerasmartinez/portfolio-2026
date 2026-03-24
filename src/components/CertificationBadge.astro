@@ -1,0 +1,249 @@
+---
+import type { Translations } from '../i18n/utils';
+
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+---
+
+<button
+  class="cert-badge"
+  id="cert-badge-btn"
+  aria-label={t['hero.certified.aria']}
+  aria-haspopup="dialog"
+>
+  <svg class="cert-badge__check" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+    <path d="M1.5 5.5L4.5 8.5L9.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  {t['hero.certified.badge']}
+</button>
+
+<dialog class="cert-modal" id="cert-modal" aria-label={t['hero.certified.modal.title']}>
+  <div class="cert-modal__inner">
+    <div class="cert-modal__header">
+      <h2 class="cert-modal__title">{t['hero.certified.modal.title']}</h2>
+      <button class="cert-modal__close" id="cert-modal-close" aria-label={t['hero.certified.modal.close']}>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M1 1L15 15M15 1L1 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="cert-modal__body">
+      <img
+        src="/certificates/claude-code-certified.png"
+        alt={t['hero.certified.modal.title']}
+        class="cert-modal__img"
+        loading="lazy"
+      />
+    </div>
+    <div class="cert-modal__footer">
+      <a
+        href="/certificates/claude-code-certified.pdf"
+        download
+        class="cert-modal__download"
+      >
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M7 1V9M7 9L4 6M7 9L10 6M1 11H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        {t['hero.certified.modal.download']}
+      </a>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const btn = document.getElementById('cert-badge-btn') as HTMLButtonElement | null;
+  const modal = document.getElementById('cert-modal') as HTMLDialogElement | null;
+  const closeBtn = document.getElementById('cert-modal-close') as HTMLButtonElement | null;
+
+  function openModal() {
+    modal?.showModal();
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal?.close();
+    document.body.style.overflow = '';
+  }
+
+  btn?.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  modal?.addEventListener('close', () => {
+    document.body.style.overflow = '';
+  });
+</script>
+
+<style>
+  /* ── Badge ── */
+  .cert-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.3rem 0.75rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-left: 2px solid var(--color-accent);
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: inherit;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 0 14px rgba(232, 255, 71, 0.06);
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    opacity: 0;
+    animation: fade-up 0.6s var(--ease-smooth) 0.95s forwards;
+  }
+
+  .cert-badge:hover,
+  .cert-badge:focus-visible {
+    background: rgba(255, 255, 255, 0.07);
+    color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 18px rgba(232, 255, 71, 0.12);
+    outline: none;
+  }
+
+  .cert-badge:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  .cert-badge__check {
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  /* ── Modal ── */
+  .cert-modal {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(90vw, 760px);
+    max-height: 90vh;
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 0;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .cert-modal::backdrop {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+  }
+
+  .cert-modal[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cert-modal__inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .cert-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+  }
+
+  .cert-modal__title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+  }
+
+  .cert-modal__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .cert-modal__close:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+  }
+
+  .cert-modal__close:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .cert-modal__body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cert-modal__img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+  }
+
+  .cert-modal__footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+  }
+
+  .cert-modal__download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--color-accent);
+    text-decoration: none;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid rgba(232, 255, 71, 0.25);
+    border-radius: 6px;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .cert-modal__download:hover {
+    background: rgba(232, 255, 71, 0.06);
+    border-color: rgba(232, 255, 71, 0.5);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cert-badge {
+      animation: none;
+      opacity: 1;
+    }
+  }
+</style>
