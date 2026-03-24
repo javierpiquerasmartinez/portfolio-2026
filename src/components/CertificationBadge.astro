@@ -14,9 +14,14 @@ const { t } = Astro.props;
   aria-label={t['hero.certified.aria']}
   aria-haspopup="dialog"
 >
-  <svg class="cert-badge__check" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
-    <path d="M1.5 5.5L4.5 8.5L9.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
+  <img
+    class="cert-badge__icon"
+    src="https://cdn.simpleicons.org/claude/E8FF47"
+    alt=""
+    aria-hidden="true"
+    width="12"
+    height="12"
+  />
   {t['hero.certified.badge']}
 </button>
 
@@ -117,9 +122,9 @@ const { t } = Astro.props;
     outline-offset: 3px;
   }
 
-  .cert-badge__check {
-    color: var(--color-accent);
+  .cert-badge__icon {
     flex-shrink: 0;
+    display: block;
   }
 
   /* ── Modal ── */
