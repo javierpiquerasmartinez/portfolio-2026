@@ -161,8 +161,8 @@
       "title": "Head of Application Development and Management",
       "company": "BNP Paribas Personal Finance",
       "startDate": "August 2022",
-      "endDate": null,
-      "current": true,
+      "endDate": "January 2026",
+      "current": false,
       "bullets": [
         "Directed technical architecture for mission-critical, multi-tenant web apps in automotive finance, using React/Angular (frontend) + Node.js/NestJS/Express (backend) + PostgreSQL/MongoDB/Redis.",
         "Implemented scalable microservices and clean architecture, reducing latency and improving system reliability.",
